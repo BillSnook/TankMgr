@@ -8,60 +8,97 @@
 // 				billsnook
 //
 // Date			1/4/19 9:13 AM
-// Version		<#version#>
+// Version		0.1
 //
 // Copyright	© William Snook, 2019
-// Licence		<#licence#>
+// Licence		None
 //
 // See         ReadMe.txt for references
 //
 
+#include <Arduino.h>
 
-// Core library for code-sense - IDE-based
-// !!! Help: http://bit.ly/2AdU7cu
-#if defined(ENERGIA) // LaunchPad specific
-#include "Energia.h"
-#elif defined(TEENSYDUINO) // Teensy specific
-#include "Arduino.h"
-#elif defined(ESP8266) // ESP8266 specific
-#include "Arduino.h"
-#elif defined(ARDUINO) // Arduino 1.8 specific
-#include "Arduino.h"
-#else // error
-#error Platform not defined
-#endif // end IDE
+#include "LEDs.h"
+//#include "Motion.h"
+//#include "Temperature.h"
+//#include "Sweep.h"
+//#include "Motor.h"
 
-// Set parameters
+//#include "Servos.h"
 
 
-// Include application, user and local libraries
-// !!! Help http://bit.ly/2CL22Qp
+LEDs			leds;
+//Motion			motion;
+//Temperature		temperature;
+//Heading			heading;
+//Ultrasonic		ultrasonic;
+//Sweep			sweep;
+//Motor			motor;
 
+//pwmServo		sweepServo;
 
-// Define structures and classes
+String			inputString;		// a String to hold incoming data
+boolean			stringComplete;		// whether the string is complete
 
+void setup() {
 
-// Define variables and constants
+	Serial.begin(115200);
+	while(!Serial) {}	// Wait for it to be ready
 
+	inputString = "";
+	inputString.reserve(200);	// reserve 200 bytes for the inputString
+	Serial.println( "" );
 
-// Prototypes
-// !!! Help: http://bit.ly/2l0ZhTa
+	// set the digital pin as output:
+	leds = LEDs();
+	leds.setupForLEDs();
 
+	stringComplete = false;
 
-// Utilities
-
-
-// Functions
-
-
-// Add setup code
-void setup()
-{
-    ;
+	Serial.println( "Setup complete - ok" );
 }
 
-// Add loop code
-void loop()
-{
-    ;
+void loop() {
+	// here is where you'd put code that needs to be running all the time.
+
+	//	Serial.print( "+" );
+	if ( stringComplete ) {
+		inputString = "New: " + inputString;
+		Serial.println( inputString );
+		// clear the string:
+		inputString = "";
+		stringComplete = false;
+	}
+
+	leds.toggle();
+}
+
+// SerialEvent occurs whenever a new data comes in the hardware serial RX. This
+// routine is run between each time loop() runs, so using delay inside loop can
+// delay response. Multiple bytes of data may be available.
+void serialEvent() {
+	while ( Serial.available() ) {
+		char inChar = (char)Serial.read();
+		if ( inputString.length() == 0 ) {	// If first char of new string
+			Serial.print( inChar );
+			switch ( inChar ) {
+				case 'l':
+					leds.isRunning = !leds.isRunning;
+					leds.interval = 1000;
+					continue;
+
+				case 'm':
+					leds.isRunning = !leds.isRunning;
+					leds.interval = 100;
+					continue;
+
+				default:
+					break;
+			}
+		}
+		inputString += inChar;
+		if ( ( inChar == '\n' ) || ( inChar == '\r' ) ) {
+			stringComplete = true;
+		}
+	}
 }

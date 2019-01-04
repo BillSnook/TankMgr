@@ -22,11 +22,17 @@
 # !!! Help: http://bit.ly/2hYLBDC
 # default = 0 = none
 #
+# ARDUINO : AVR = EEPROM HID SPI SoftwareSerial Wire 
+# ARDUINO : common = Bridge Esplora Ethernet Firmata GSM 
+#	LiquidCrystal RobotIRremote Robot_Control Robot_Motor SD Servo 
+#	SpacebrewYun Stepper TFT Temboo WiFi 
+#
 APP_LIBS_LIST = 0
 
 # List user's libraries here
 # !!! Help: http://bit.ly/2AEscDx
 # default = 0 = none
+#
 #
 USER_LIBS_LIST = 0
 
@@ -64,7 +70,7 @@ USER_LIBS_LIST = 0
 # !!! Help: http://bit.ly/2AUEcgp
 # Uncomment and specify another speed
 #
-#SERIAL_BAUDRATE = 115200
+SERIAL_BAUDRATE = 115200
 
 
 
@@ -89,3 +95,4 @@ MAKEFILE_PATH  = $(CURRENT_DIR)/Makefiles
 UTILITIES_PATH = $(CURRENT_DIR)/Utilities
 
 include $(MAKEFILE_PATH)/Step1.mk
+
