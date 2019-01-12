@@ -30,6 +30,10 @@ LEDs::LEDs() {
 bool LEDs::setupForLEDs() {
 	
 	pinMode( ledPin, OUTPUT );
+	digitalWrite( ledPin, LOW );
+	pinMode( MainPowerPin, OUTPUT );
+	digitalWrite( MainPowerPin, LOW );
+
 	isInitialized = true;
 	isRunning = true;
 	return true;
@@ -60,3 +64,16 @@ void LEDs::toggle() {
 		digitalWrite( ledPin, ledState );
 	}
 }
+
+// Power management
+bool LEDs::mainPowerOff() {
+	
+	digitalWrite( MainPowerPin, LOW );
+}
+
+bool LEDs::mainPowerOn() {
+	
+	digitalWrite( MainPowerPin, HIGH );
+}
+
+

@@ -19,26 +19,18 @@
 #include <Arduino.h>
 
 #include "LEDs.h"
-//#include "Motion.h"
-//#include "Temperature.h"
-//#include "Sweep.h"
-//#include "Motor.h"
-
-//#include "Servos.h"
+#include "Ultrasonic.h"
+#include "WireComm.h"
 
 
 LEDs			leds;
-//Motion			motion;
-//Temperature		temperature;
-//Heading			heading;
-//Ultrasonic		ultrasonic;
-//Sweep			sweep;
-//Motor			motor;
-
-//pwmServo		sweepServo;
+Ultrasonic		ultrasonic;
+WireComm		wireComm;			// I2C functions and test commands
 
 String			inputString;		// a String to hold incoming data
 boolean			stringComplete;		// whether the string is complete
+
+boolean			mainPowerState;
 
 void setup() {
 
@@ -52,6 +44,15 @@ void setup() {
 	// set the digital pin as output:
 	leds = LEDs();
 	leds.setupForLEDs();
+
+	mainPowerState = false;
+	leds.mainPowerOff();
+
+	ultrasonic = Ultrasonic();
+	ultrasonic.setupForUltrasonic();
+
+	wireComm = WireComm();
+	wireComm.setupForWireComm( false );	// true for master, false for slave
 
 	stringComplete = false;
 
@@ -71,6 +72,8 @@ void loop() {
 	}
 
 	leds.toggle();
+
+	wireComm.runWireComm();
 }
 
 // SerialEvent occurs whenever a new data comes in the hardware serial RX. This
@@ -82,6 +85,7 @@ void serialEvent() {
 		if ( inputString.length() == 0 ) {	// If first char of new string
 			Serial.print( inChar );
 			switch ( inChar ) {
+
 				case 'l':
 					leds.isRunning = !leds.isRunning;
 					leds.interval = 1000;
@@ -92,8 +96,26 @@ void serialEvent() {
 					leds.interval = 100;
 					continue;
 
+				case 'p':
+					if ( mainPowerState ) {
+						leds.mainPowerOff();
+					} else {
+						leds.mainPowerOn();
+					}
+					mainPowerState = !mainPowerState;
+					continue;
+
+				case 'r':								// buffer size is 32
+					wireComm.readWireComm( 20 );		// We never get more than requested, we can get less
+					continue;
+
+				case 'w':
+					wireComm.writeWireComm( "Data" );
+					continue;
+
 				default:
 					break;
+
 			}
 		}
 		inputString += inChar;

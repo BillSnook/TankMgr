@@ -11,6 +11,8 @@
 
 #include <Arduino.h>
 
+#define MainPowerPin	12
+
 
 class LEDs {
 	
@@ -24,17 +26,17 @@ class LEDs {
 public:
 	bool			isRunning;
 	long			interval;					// blink interval (milliseconds)
-
+	
 	explicit LEDs();
-	
-//	speed_array 	forward[SPEED_ARRAY];
-//	speed_array 	reverse[SPEED_ARRAY];
-	
-	
+
 	bool	setupForLEDs();
 	bool	resetForLEDs();
-	
+
 	void	toggle();
+	
+	bool 	mainPowerOff();
+	bool 	mainPowerOn();
+
 };
 
 #endif // LEDs_h
