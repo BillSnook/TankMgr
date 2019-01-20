@@ -20,9 +20,14 @@
 // Library header
 #include "Arduino.h"
 #include "WireComm.h"
+#include "Commands.h"
 
 
 #define I2C_SLAVE_ADDRESS	8
+
+
+extern	Commands		commands;
+
 
 WireComm::WireComm() {
 	
@@ -107,22 +112,64 @@ void WireComm::runWireComm() {
 	}
 }
 
-// MARK: These slave callback routines are to handle writes and reads from the master
+// MARK: These I2C slave callback routines handle writes and reads from the I2C master
 
 // function that executes whenever data is requested by a master when it reads data
 // this function is registered as an event, see setup()
 void WireComm::requestEvent() {
-	Serial.println("Got requestEvent, sending 'Hello World', 11 characters");	// debug info
-	Wire.write("Hello World");			// respond with message with many bytes
 	
-	// Check mode then respond with appropriate data
+	unsigned char buffer[20] = {0};
+
+//	Serial.println("Got requestEvent to initiate our response");
+//	memcpy(buffer, "Test", 8);
+//
+//	// Check mode then respond with appropriate data
+	int bytesIn = commands.handleRequest( buffer );
+	
+	Serial.print("In WireComm::requestEvent, got bytes: ");
+	Serial.println(bytesIn);
+	
+	const char outBuff[64] = {0};
+	sprintf( outBuff, "In WireComm::requestEvent, buffer data to write: 0x%02X%02X%02X%02X", buffer[0], buffer[1], buffer[2], buffer[3] );
+	Serial.println( outBuff );
+	
+	if (bytesIn > 0 ) {
+//		Wire.write( (uint8_t)buffer[0] );
+//		Wire.write( (uint8_t)buffer[1] );
+//		Wire.write( (uint8_t)buffer[2] );
+//		Wire.write( (uint8_t)buffer[3] );
+		Wire.write( "Whot" );
+//		Wire.write( (const char *)buffer, bytesIn );
+//		Serial.print("In WireComm::requestEvent, got bytes: ");
+//		Serial.println(bytesIn);
+//		sprintf( outBuff, "Buffer data to write: 0x%02X%02X%02X%02X", buffer[0], buffer[1], buffer[2], buffer[3] );
+//		Serial.println( outBuff );
+	}
+//	Serial.println("Got requestEvent, sending 'Hello World', 11 characters");
+//	Wire.write("Hello World");			// respond with message with many bytes
 }
 
 // function that executes whenever data is received from master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
-	Serial.print("Got receiveEvent to accept write, howMany: ");	// debug info
-	Serial.println(howMany);	// debug info
+	Serial.print("Got receiveEvent to accept write, howMany: ");
+	Serial.println(howMany);
+	if ( howMany == 2 ) {		// Potential command
+		if ( Wire.available() == 2 ) {
+			byte signifier = Wire.read();
+			unsigned char command = Wire.read();
+			if ( signifier == 0X40 ) {
+				commands.parseCommand( command );
+			} else {
+				Serial.print("Not a command, mark: ");
+				Serial.print( signifier );
+				Serial.print(" and code: ");
+				Serial.println( command );
+			}
+			return;
+		}
+	}
+	Serial.print( "< " );				// print the end of line
 	while (0 < Wire.available()) {	// loop through all
 		char c = Wire.read();		// receive bytes as a character
 		Serial.print(c);			// print the character
@@ -130,5 +177,5 @@ void WireComm::receiveEvent( int howMany ) {
 		// Accumulate bytes into command, execute it
 	}
 //	int x = Wire.read();			// receive byte as an integer
-	Serial.println( "." );				// print the end of line
+	Serial.println( " >" );				// print the end of line
 }

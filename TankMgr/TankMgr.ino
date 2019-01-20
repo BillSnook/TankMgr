@@ -21,11 +21,13 @@
 #include "LEDs.h"
 #include "Ultrasonic.h"
 #include "WireComm.h"
+#include "Commands.h"
 
 
 LEDs			leds;
 Ultrasonic		ultrasonic;
 WireComm		wireComm;			// I2C functions and test commands
+Commands		commands;
 
 String			inputString;		// a String to hold incoming data
 boolean			stringComplete;		// whether the string is complete
@@ -46,14 +48,17 @@ void setup() {
 	leds.setupForLEDs();
 
 	mainPowerState = false;
-	leds.mainPowerOff();
+	leds.mainPowerOff();	// Set power off to motors and servos at startup
 
 	ultrasonic = Ultrasonic();
 	ultrasonic.setupForUltrasonic();
 
+	// Wrapper for Wire class which writes to I2C
 	wireComm = WireComm();
 	wireComm.setupForWireComm( false );	// true for master, false for slave
 
+	commands = Commands();
+	
 	stringComplete = false;
 
 	Serial.println( "Setup complete - ok" );

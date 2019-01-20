@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A92F205A21DFCBD100DF77E3 /* TankMgr.ino in Sources */ = {isa = PBXBuildFile; fileRef = A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */; };
 		A92F207021DFCD7800DF77E3 /* LEDs.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207021DFCD7800DF77E3 /* LEDs.h */; };
+		A981572F21EBC846003B360C /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A981572E21EBC846003B360C /* Commands.cpp */; };
 		A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* main.cpp */; };
 		A9AF207121DFCD7800DF77E3 /* LEDs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF206F21DFCD7800DF77E3 /* LEDs.cpp */; };
 		A9AF207421DFD1F400DF77E3 /* Ultrasonic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */; };
@@ -425,6 +426,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A981572D21EBC845003B360C /* Commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
+		A981572E21EBC846003B360C /* Commands.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Commands.cpp; sourceTree = "<group>"; };
 		A9AF1FFF21DFCBD000DF77E3 /* Index */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Index; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AF200221DFCBD000DF77E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A9AF200421DFCBD000DF77E3 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -955,6 +958,8 @@
 				A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */,
 				A9AF207C21E1395900DF77E3 /* WireComm.h */,
 				A9AF207B21E1395800DF77E3 /* WireComm.cpp */,
+				A981572D21EBC845003B360C /* Commands.h */,
+				A981572E21EBC846003B360C /* Commands.cpp */,
 				A9AF200721DFCBD000DF77E3 /* Sketchbook */,
 				AAAA190104093110AA000000 /* Resources */,
 				A9AF200921DFCBD000DF77E3 /* Configurations */,
@@ -2466,6 +2471,7 @@
 				AA2A190104093110AA000119 /* Squawk.h in Sources */,
 				AA2A190104093110AA00011A /* SquawkSD.cpp in Sources */,
 				AA2A190104093110AA00011B /* SquawkSD.h in Sources */,
+				A981572F21EBC846003B360C /* Commands.cpp in Sources */,
 				AA2A190104093110AA00011C /* communication.cpp in Sources */,
 				AA2A190104093110AA00011D /* glcdfont.c in Sources */,
 				AA2A190104093110AA00011E /* helper.cpp in Sources */,
