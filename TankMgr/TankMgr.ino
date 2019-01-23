@@ -76,9 +76,9 @@ void loop() {
 		stringComplete = false;
 	}
 
-	leds.toggle();
+	leds.toggle();			// Check if it is time to toggle LEDs
 
-	wireComm.runWireComm();
+//	wireComm.runWireComm();
 }
 
 // SerialEvent occurs whenever a new data comes in the hardware serial RX. This

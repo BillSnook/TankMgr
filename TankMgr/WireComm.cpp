@@ -47,7 +47,7 @@ void WireComm::setupForWireComm( bool beMaster ) {
 		Wire.begin();								// join i2c bus as master
 	} else {
 		Serial.print(" - setupForWireComm as I2C slave at address ");		// print debug info
-		Serial.println( I2C_SLAVE_ADDRESS);		// print debug info
+		Serial.println( I2C_SLAVE_ADDRESS );		// print debug info
 		Wire.begin( I2C_SLAVE_ADDRESS );			// join i2c bus as slave with address #8
 		Wire.onReceive(receiveEvent);				// register receive event for writes from master
 		Wire.onRequest(requestEvent);				// register request event for read to master
@@ -86,30 +86,30 @@ void WireComm::writeWireComm( char *data ) {
 
 void WireComm::runWireComm() {
 
-	if ( !isSetup ) {
-		return;
-	}
-	if ( isMaster ) {
-		// This checks for data returned from a slave in response to a requestFrom command to that slave
-		// The slave can send more than we request and we ignore it, but if it sends less, we get 0x255 fillers at the end
-		if ( Wire.available() > 0 ) {	// however many slave sends, we do not seem to get more than we requested
-			Serial.println("runWireComm with data available");		// print debug info
-			Serial.print("-");    // print the valid characters
-			while (Wire.available()) {	// slave may send less than requested
-										//  but we seem to not accept more than we requested
-				char c = Wire.read();	// receive a byte as character
-				uint8_t n = (uint8_t)c;
-				if ( c != 0x255 ) {		// Skip characters not sent - positions requested but not sent are prefilled
-					Serial.print(c);    // print the valid characters
-				}
-//				Serial.print(" ");        // print the character
-//				Serial.println(n);        // print the character
-			}
-			Serial.println("-");			// print an end of line
-		}
-//	} else {
-//		// Handle async commands run from receive or request events?
-	}
+//	if ( !isSetup ) {
+//		return;
+//	}
+//	if ( isMaster ) {
+//		// This checks for data returned from a slave in response to a requestFrom command to that slave
+//		// The slave can send more than we request and we ignore it, but if it sends less, we get 0x255 fillers at the end
+//		if ( Wire.available() > 0 ) {	// however many slave sends, we do not seem to get more than we requested
+//			Serial.println("runWireComm with data available");		// print debug info
+//			Serial.print("-");    // print the valid characters
+//			while (Wire.available()) {	// slave may send less than requested
+//										//  but we seem to not accept more than we requested
+//				char c = Wire.read();	// receive a byte as character
+//				uint8_t n = (uint8_t)c;
+//				if ( c != 0x255 ) {		// Skip characters not sent - positions requested but not sent are prefilled
+//					Serial.print(c);    // print the valid characters
+//				}
+////				Serial.print(" ");        // print the character
+////				Serial.println(n);        // print the character
+//			}
+//			Serial.println("-");			// print an end of line
+//		}
+////	} else {
+////		// Handle async commands run from receive or request events?
+//	}
 }
 
 // MARK: These I2C slave callback routines handle writes and reads from the I2C master
@@ -118,35 +118,8 @@ void WireComm::runWireComm() {
 // this function is registered as an event, see setup()
 void WireComm::requestEvent() {
 	
-	unsigned char buffer[20] = {0};
-
-//	Serial.println("Got requestEvent to initiate our response");
-//	memcpy(buffer, "Test", 8);
-//
 //	// Check mode then respond with appropriate data
-	int bytesIn = commands.handleRequest( buffer );
-	
-	Serial.print("In WireComm::requestEvent, got bytes: ");
-	Serial.println(bytesIn);
-	
-	const char outBuff[64] = {0};
-	sprintf( outBuff, "In WireComm::requestEvent, buffer data to write: 0x%02X%02X%02X%02X", buffer[0], buffer[1], buffer[2], buffer[3] );
-	Serial.println( outBuff );
-	
-	if (bytesIn > 0 ) {
-//		Wire.write( (uint8_t)buffer[0] );
-//		Wire.write( (uint8_t)buffer[1] );
-//		Wire.write( (uint8_t)buffer[2] );
-//		Wire.write( (uint8_t)buffer[3] );
-		Wire.write( "Whot" );
-//		Wire.write( (const char *)buffer, bytesIn );
-//		Serial.print("In WireComm::requestEvent, got bytes: ");
-//		Serial.println(bytesIn);
-//		sprintf( outBuff, "Buffer data to write: 0x%02X%02X%02X%02X", buffer[0], buffer[1], buffer[2], buffer[3] );
-//		Serial.println( outBuff );
-	}
-//	Serial.println("Got requestEvent, sending 'Hello World', 11 characters");
-//	Wire.write("Hello World");			// respond with message with many bytes
+	bool handledIt = commands.handleRequest();
 }
 
 // function that executes whenever data is received from master when it writes

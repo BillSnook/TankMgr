@@ -24,7 +24,7 @@
 #ifndef Commands_h
 #define Commands_h
 
-#define V_IN_PIN	A5
+#define V_IN_PIN	A0
 
 enum ControllerMode {
 	initialMode = 0,
@@ -41,11 +41,11 @@ public:
 	long				status;		// Current status of this device
 	ControllerMode		mode;
 
-	int					stateBits;
-	int 				vIn;
+	long				stateBits;
+	long 				vIn;
 
 	bool parseCommand( unsigned char command );
-	int  handleRequest( unsigned char *buffPtr );
+	bool handleRequest();
 };
 
 #endif // Commands_h

@@ -27,6 +27,7 @@ Commands::Commands() {
 	mode = initialMode;
 	status = 0;
 	pinMode( V_IN_PIN, INPUT );
+//	delay( 20 );		// mSec
 	vIn = analogRead( V_IN_PIN );
 	Serial.print("Commands initialization with vIn: ");
 	Serial.println( vIn );
@@ -56,41 +57,34 @@ bool Commands::parseCommand( unsigned char command ) {
 }
 
 // Called when data is requested by a master when it wants to read data
-int Commands::handleRequest( unsigned char *buffPtr ) {
+bool Commands::handleRequest() {
 	switch ( mode ) {
 		case initialMode:
-			Serial.println( "In handleRequest in initialMode" );
-
+			Wire.write( (uint8_t)0xAA );
+			Wire.write( (uint8_t)0x55 );
+			// Do not do Serial until after writes have been done
+//			Serial.println( "In handleRequest in initialMode" );
 			break;
 
 		case statusMode:
-			Serial.println( "In handleRequest in statusMode" );
 			vIn = analogRead( V_IN_PIN );
-			status = (vIn && 0xFFFF) || ( stateBits << 16 );
-			buffPtr[0] = 'W'; // (vIn && 0xFF00 ) >> 8;
-			buffPtr[1] = 'o'; // vIn && 0xFF;
-			buffPtr[2] = 'o'; // (stateBits && 0xFF00 ) >> 8;
-			buffPtr[3] = 't'; // stateBits && 0xFF;
-			buffPtr[4] = 0;
-			
-			const char outBuff[64] = {0};
-			sprintf( outBuff, "vIn: 0x%02X%02X, state: 0x%02X%02X", buffPtr[0], buffPtr[1], buffPtr[2], buffPtr[3] );
-			Serial.println( outBuff );
-			sprintf( outBuff, "vIn: 0x%04X, state: 0x%04X", vIn, stateBits );
-			Serial.println( outBuff );
-			free( outBuff );
-
-			return 4;
+			Wire.write( (uint8_t)((vIn & 0xFF00 ) >> 8) );
+			Wire.write( (uint8_t)(vIn & 0xFF) );
+			Wire.write( (uint8_t)((stateBits & 0xFF00 ) >> 8) );
+			Wire.write( (uint8_t)(stateBits & 0xFF) );
+//			status = (vIn & 0x0FFFF) || ( ( stateBits << 16 ) & 0xFFFF0000 );
+//			Serial.println( "In handleRequest in statusMode" );
 			break;
 			
 		case rangeMode:
-			Serial.println( "In handleRequest in rangeMode" );
-			memcpy( buffPtr, &status, 4);
+//			Serial.println( "In handleRequest in rangeMode" );
+//			memcpy( buffPtr, &status, 4);
 			break;
 			
 		default:
-			Serial.println( "In handleRequest in unknown mode" );
+//			Serial.println( "In handleRequest in unknown mode" );
+			return false;
 			break;
 	}
-	return 4;
+	return true;
 }
