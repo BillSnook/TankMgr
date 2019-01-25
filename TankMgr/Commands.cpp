@@ -62,8 +62,6 @@ bool Commands::handleRequest() {
 		case initialMode:
 			Wire.write( (uint8_t)0xAA );
 			Wire.write( (uint8_t)0x55 );
-			// Do not do Serial until after writes have been done
-//			Serial.println( "In handleRequest in initialMode" );
 			break;
 
 		case statusMode:
@@ -72,17 +70,13 @@ bool Commands::handleRequest() {
 			Wire.write( (uint8_t)(vIn & 0xFF) );
 			Wire.write( (uint8_t)((stateBits & 0xFF00 ) >> 8) );
 			Wire.write( (uint8_t)(stateBits & 0xFF) );
-//			status = (vIn & 0x0FFFF) || ( ( stateBits << 16 ) & 0xFFFF0000 );
-//			Serial.println( "In handleRequest in statusMode" );
 			break;
 			
 		case rangeMode:
-//			Serial.println( "In handleRequest in rangeMode" );
 //			memcpy( buffPtr, &status, 4);
 			break;
 			
 		default:
-//			Serial.println( "In handleRequest in unknown mode" );
 			return false;
 			break;
 	}

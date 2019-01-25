@@ -26,7 +26,8 @@ class LEDs {
 public:
 	bool			isRunning;
 	long			interval;					// blink interval (milliseconds)
-	
+	boolean			mainPowerState;
+
 	explicit LEDs();
 
 	bool	setupForLEDs();
@@ -36,6 +37,7 @@ public:
 	
 	bool 	mainPowerOff();
 	bool 	mainPowerOn();
+	void	powerToggle();
 
 };
 

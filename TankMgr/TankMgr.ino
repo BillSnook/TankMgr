@@ -32,7 +32,6 @@ Commands		commands;
 String			inputString;		// a String to hold incoming data
 boolean			stringComplete;		// whether the string is complete
 
-boolean			mainPowerState;
 
 void setup() {
 
@@ -47,7 +46,6 @@ void setup() {
 	leds = LEDs();
 	leds.setupForLEDs();
 
-	mainPowerState = false;
 	leds.mainPowerOff();	// Set power off to motors and servos at startup
 
 	ultrasonic = Ultrasonic();
@@ -65,9 +63,8 @@ void setup() {
 }
 
 void loop() {
-	// here is where you'd put code that needs to be running all the time.
 
-	//	Serial.print( "+" );
+//	Serial.print( "+" );
 	if ( stringComplete ) {
 		inputString = "New: " + inputString;
 		Serial.println( inputString );
@@ -77,8 +74,6 @@ void loop() {
 	}
 
 	leds.toggle();			// Check if it is time to toggle LEDs
-
-//	wireComm.runWireComm();
 }
 
 // SerialEvent occurs whenever a new data comes in the hardware serial RX. This
@@ -102,20 +97,7 @@ void serialEvent() {
 					continue;
 
 				case 'p':
-					if ( mainPowerState ) {
-						leds.mainPowerOff();
-					} else {
-						leds.mainPowerOn();
-					}
-					mainPowerState = !mainPowerState;
-					continue;
-
-				case 'r':								// buffer size is 32
-					wireComm.readWireComm( 20 );		// We never get more than requested, we can get less
-					continue;
-
-				case 'w':
-					wireComm.writeWireComm( "Data" );
+					leds.powerToggle();
 					continue;
 
 				default:

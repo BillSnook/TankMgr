@@ -8,8 +8,8 @@
 
 #include "Ultrasonic.h"
 
-//#define PulseDetectPin			7		// Pulse control pin for 3-pin ultrasonic range detector
-#define PulsePin					7
+//#define PulseDetectPin			7
+#define PulsePin					7		// Pulse control pin for 3-pin ultrasonic range detector
 #define DetectPin					8
 
 Ultrasonic::Ultrasonic() {
@@ -70,8 +70,8 @@ void Ultrasonic::measure() {
 	long cm = makeMeasurement();
 	Serial.print(duration);
 	Serial.print("uS: ");
-	//	Serial.print(RangeInInches);		//0~157 inches
-	//	Serial.print(" inch, ");
+//	Serial.print(RangeInInches);		//0~157 inches
+//	Serial.print(" inch, ");
 	Serial.print(cm);	//0~400cm
 	Serial.println(" cm");
 }

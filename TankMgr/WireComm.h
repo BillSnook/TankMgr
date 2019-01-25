@@ -24,7 +24,6 @@ class WireComm {
 	
 	int				wireAddress;	// the address of i2c if slave
 	bool			isSetup;		// can only be setup once
-	bool			isMaster;		// mode of this device
 
 public:
 	bool			isRunning;
@@ -34,9 +33,6 @@ public:
 	void			setupForWireComm( bool beMaster );
 	void			resetForWireComm();
 
-	void			readWireComm( int getBytes );
-	void			writeWireComm( char *data );
-	
 	void			runWireComm();
 	
 	static void		requestEvent();

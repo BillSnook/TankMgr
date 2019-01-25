@@ -25,6 +25,7 @@ LEDs::LEDs() {
 
 	isInitialized = false;
 	isRunning = false;
+	mainPowerState = false;
 }
 
 bool LEDs::setupForLEDs() {
@@ -76,4 +77,12 @@ bool LEDs::mainPowerOn() {
 	digitalWrite( MainPowerPin, HIGH );
 }
 
-
+void LEDs::powerToggle() {
+	
+	if ( mainPowerState ) {
+		mainPowerOff();
+	} else {
+		mainPowerOn();
+	}
+	mainPowerState = !mainPowerState;
+}
