@@ -517,6 +517,7 @@
 		A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ultrasonic.cpp; sourceTree = "<group>"; };
 		A9AF207B21E1395800DF77E3 /* WireComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WireComm.cpp; sourceTree = "<group>"; };
 		A9AF207C21E1395900DF77E3 /* WireComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireComm.h; sourceTree = "<group>"; };
+		A9F40C3321FCCAA5007B9EE0 /* Pins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
 		AAAA190104093110AA000005 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
 		AAAA190104093110AA000006 /* CDC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDC.cpp; sourceTree = "<group>"; };
 		AAAA190104093110AA000007 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
@@ -952,6 +953,7 @@
 				A9AF200421DFCBD000DF77E3 /* Makefile */,
 				A9AF200621DFCBD000DF77E3 /* ReadMe.txt */,
 				A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */,
+				A9F40C3321FCCAA5007B9EE0 /* Pins.h */,
 				A9AF207021DFCD7800DF77E3 /* LEDs.h */,
 				A9AF206F21DFCD7800DF77E3 /* LEDs.cpp */,
 				A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */,

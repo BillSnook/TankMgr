@@ -97,9 +97,13 @@ void serialEvent() {
 					continue;
 
 				case 'p':
+					ultrasonic.pingSerialDisplay( 0, true );
+					continue;
+					
+				case 'v':
 					leds.powerToggle();
 					continue;
-
+					
 				default:
 					break;
 

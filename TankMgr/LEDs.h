@@ -10,8 +10,7 @@
 #define LEDs_h
 
 #include <Arduino.h>
-
-#define MainPowerPin	12
+#include "Pins.h"
 
 
 class LEDs {
@@ -38,7 +37,7 @@ public:
 	bool 	mainPowerOff();
 	bool 	mainPowerOn();
 	void	powerToggle();
-
+	
 };
 
 #endif // LEDs_h

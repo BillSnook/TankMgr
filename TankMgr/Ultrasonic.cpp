@@ -7,10 +7,8 @@
 //
 
 #include "Ultrasonic.h"
+#include "Pins.h"
 
-//#define PulseDetectPin			7
-#define PulsePin					7		// Pulse control pin for 3-pin ultrasonic range detector
-#define DetectPin					8
 
 Ultrasonic::Ultrasonic() {
 	isInitialized = false;
@@ -18,9 +16,9 @@ Ultrasonic::Ultrasonic() {
 	previousMillis = 0;
 	interval = 1000;
 
-	pinMode(PulsePin, OUTPUT);
-	digitalWrite(PulsePin, LOW);
-	pinMode(DetectPin, INPUT);
+	pinMode(TrigPin, OUTPUT);
+	digitalWrite(TrigPin, LOW);
+	pinMode(EchoPin, INPUT);
 
 }
 
@@ -33,14 +31,15 @@ bool Ultrasonic::setupForUltrasonic() {
 	return true;
 }
 
-void Ultrasonic::distanceMeasure(void) {
+long Ultrasonic::ping(void) {
 	
-	digitalWrite(PulsePin, LOW);
+	digitalWrite(TrigPin, LOW);
 	delayMicroseconds(2);
-	digitalWrite(PulsePin, HIGH);
+	digitalWrite(TrigPin, HIGH);
 	delayMicroseconds(5);
-	digitalWrite(PulsePin,LOW);
-	duration = pulseIn(DetectPin, HIGH);
+	digitalWrite(TrigPin,LOW);
+	duration = pulseIn(EchoPin, HIGH);
+	return duration;
 }
 
 /*The measured distance from the range 0 to 400 Centimeters*/
@@ -54,7 +53,15 @@ long Ultrasonic::microsecondsToInches(void) {
 	return duration/74/2;
 }
 
-void Ultrasonic::measure() {
+long Ultrasonic::pingReturnCentimeters() {
+	
+	ping();			// get the current signal time into duration
+//	long RangeInInches = microsecondsToInches();//convert the time to inches;
+//	long RangeInCentimeters = microsecondsToCentimeters();	//convert the time to centimeters
+	return microsecondsToCentimeters();
+}
+
+void Ultrasonic::pingPeriodicDisplay() {
 
 	if ( !isInitialized || !isRunning ) {
 		return;
@@ -67,7 +74,7 @@ void Ultrasonic::measure() {
 	}
 	previousMillis = currentMillis;	// save the last time we measured
 	
-	long cm = makeMeasurement();
+	long cm = pingReturnCentimeters();
 	Serial.print(duration);
 	Serial.print("uS: ");
 //	Serial.print(RangeInInches);		//0~157 inches
@@ -76,28 +83,20 @@ void Ultrasonic::measure() {
 	Serial.println(" cm");
 }
 
-long Ultrasonic::makeMeasurement() {
+void Ultrasonic::pingSerialDisplay( int index, bool print ) {
 	
-	distanceMeasure();			// get the current signal time into duration
-//	long RangeInInches = microsecondsToInches();//convert the time to inches;
-//	long RangeInCentimeters = microsecondsToCentimeters();	//convert the time to centimeters
-	return microsecondsToCentimeters();
-}
-
-long Ultrasonic::processCycle( int index, bool print ) {
-	
-	distanceMeasure();			// get the current signal time into duration
+	ping();			// get the current signal time into duration
 
 	long cm = microsecondsToCentimeters();
 	long in = microsecondsToInches();
 
 //	long diff;
-	char angle[8];
-	char pulse[8];
 //	diffManager.currentRecord = 0;
 //	diff = diffManager.put( index, cm );
 
 	if ( print ) {
+		char angle[8];
+		char pulse[8];
 		sprintf( pulse, "%5u", duration );
 		sprintf( angle, "%3d", index * 10);
 		Serial.print( pulse );
@@ -111,6 +110,5 @@ long Ultrasonic::processCycle( int index, bool print ) {
 		Serial.print( in );	//0~120in
 		Serial.println(" inches");
 	}
-	
 
 }

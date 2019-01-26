@@ -20,11 +20,11 @@
 
 
 #include "Arduino.h"
+#include "Pins.h"
 
 #ifndef Commands_h
 #define Commands_h
 
-#define V_IN_PIN	A0
 
 enum ControllerMode {
 	initialMode = 0,

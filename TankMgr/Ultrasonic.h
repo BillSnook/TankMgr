@@ -28,16 +28,17 @@ public:
 	explicit 		Ultrasonic();
 	
 	bool			setupForUltrasonic();
-	void 			measure();
-	long			makeMeasurement();
 	
-	long			processCycle( int index, bool print );
+	long			pingReturnCentimeters();
+	
+	void 			pingPeriodicDisplay();
+	void			pingSerialDisplay( int index, bool print );
 
 	long 			microsecondsToCentimeters(void);
 	long 			microsecondsToInches(void);
 
 private:
-	void 			distanceMeasure(void);
+	long 			ping(void);
 };
 
 #endif /* Ultrasonic_h */
