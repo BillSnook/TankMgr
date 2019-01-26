@@ -78,9 +78,9 @@ void loop() {
 
 // SerialEvent occurs whenever a new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
-// delay response. Multiple bytes of data may be available.
+// delay response, as can delays here. Multiple bytes of data may be available.
 void serialEvent() {
-	while ( Serial.available() ) {
+	while ( Serial.available() ) {			// DEBUG commands are here
 		char inChar = (char)Serial.read();
 		if ( inputString.length() == 0 ) {	// If first char of new string
 			Serial.print( inChar );

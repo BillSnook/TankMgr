@@ -63,32 +63,25 @@ void WireComm::requestEvent() {
 	bool handledIt = commands.handleRequest();
 }
 
+// REMOTE data reception is handled here
 // function that executes whenever data is received from master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
-	Serial.print("Got receiveEvent to accept write, howMany: ");
-	Serial.println(howMany);
-	if ( howMany == 2 ) {		// Potential command
+//	Serial.print("Got receiveEvent to accept write, howMany: ");
+//	Serial.println(howMany);
+
+	if ( howMany == 2 ) {			// Potential command
 		if ( Wire.available() == 2 ) {
-			byte signifier = Wire.read();
-			unsigned char command = Wire.read();
-			if ( signifier == 0X40 ) {
-				commands.parseCommand( command );
-			} else {
-				Serial.print("Not a command, mark: ");
-				Serial.print( signifier );
-				Serial.print(" and code: ");
-				Serial.println( command );
-			}
+			byte command = Wire.read();
+			byte parameter = Wire.read();
+			commands.parseCommand( command, parameter );	// Handled here
 			return;
 		}
 	}
-//	Serial.print( "< " );				// print the end of line
-//	while (0 < Wire.available()) {	// loop through all
-//		char c = Wire.read();		// receive bytes as a character
-//		Serial.print(c);			// print the character
-//
-//		// Accumulate bytes into command, execute it
-//	}
-//	Serial.println( " >" );				// print the end of line
+	Serial.print( "< " );				// print the end of line
+	while (0 < Wire.available()) {	// loop through all
+		char c = Wire.read();		// receive bytes as a character
+		Serial.print(c);			// print the character
+	}
+	Serial.println( " >" );				// print the end of line
 }

@@ -24,17 +24,22 @@ private:
 public:
 	unsigned long	duration;			// the Pulse time received;
 	bool			isRunning;
+	int				last, next;
+	int				range;
 
 	explicit 		Ultrasonic();
 	
 	bool			setupForUltrasonic();
 	
+	void 			ranger( int parameter );
+	
 	long			pingReturnCentimeters();
 	
 	void 			pingPeriodicDisplay();
-	void			pingSerialDisplay( int index, bool print );
+	long			pingSerialDisplay( int index, bool print );
 
 	long 			microsecondsToCentimeters(void);
+	long 			microsecondsToMillimeters(void);
 	long 			microsecondsToInches(void);
 
 private:

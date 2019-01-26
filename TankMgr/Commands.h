@@ -41,10 +41,14 @@ public:
 	long				status;		// Current status of this device
 	ControllerMode		mode;
 
-	long				stateBits;
-	long 				vIn;
+	int					stateBits;
+	int 				vIn;
+	
+	int					last;
+	int					next;
+	int					range;
 
-	bool parseCommand( unsigned char command );
+	bool parseCommand( byte command, byte parameter );
 	bool handleRequest();
 };
 
