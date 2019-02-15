@@ -76,7 +76,7 @@ void loop() {
 	leds.toggle();			// Check if it is time to toggle LEDs
 }
 
-// SerialEvent occurs whenever a new data comes in the hardware serial RX. This
+// SerialEvent occurs whenever new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
 // delay response, as can delays here. Multiple bytes of data may be available.
 void serialEvent() {
@@ -86,6 +86,14 @@ void serialEvent() {
 			Serial.print( inChar );
 			switch ( inChar ) {
 
+				case '0':
+					leds.mainPowerOff();
+					continue;
+					
+				case '1':
+					leds.mainPowerOn();
+					continue;
+					
 				case 'l':
 					leds.isRunning = !leds.isRunning;
 					leds.interval = 1000;

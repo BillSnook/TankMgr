@@ -41,8 +41,8 @@ void WireComm::setupForWireComm( bool beMaster ) {
 		return;
 	}
 	isSetup = true;									// only done once
-	Serial.print("SetupForWireComm as I2C slave at address ");		// print debug info
-	Serial.println( I2C_SLAVE_ADDRESS );		// print debug info
+//	Serial.print("SetupForWireComm as I2C slave at address ");		// print debug info
+//	Serial.println( I2C_SLAVE_ADDRESS );		// print debug info
 	Wire.begin( I2C_SLAVE_ADDRESS );			// join i2c bus as slave with address #8
 	Wire.onReceive(receiveEvent);				// register receive event for writes from master
 	Wire.onRequest(requestEvent);				// register request event for read to master

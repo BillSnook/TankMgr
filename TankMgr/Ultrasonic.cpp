@@ -71,8 +71,6 @@ long Ultrasonic::microsecondsToInches(void) {
 long Ultrasonic::pingReturnCentimeters() {
 	
 	ping();			// get the current signal time into duration
-//	long RangeInInches = microsecondsToInches();//convert the time to inches;
-//	long RangeInCentimeters = microsecondsToCentimeters();	//convert the time to centimeters
 	return microsecondsToCentimeters();
 }
 
@@ -105,10 +103,6 @@ long Ultrasonic::pingSerialDisplay( int index, bool print ) {
 	long cm = microsecondsToCentimeters();
 	long mm = microsecondsToMillimeters();
 	long in = microsecondsToInches();
-
-//	long diff;
-//	diffManager.currentRecord = 0;
-//	diff = diffManager.put( index, cm );
 
 	if ( print ) {
 		char angle[8];
