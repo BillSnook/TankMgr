@@ -31,12 +31,12 @@ public:
 
 	bool	setupForLEDs();
 	bool	resetForLEDs();
-
 	void	toggle();
 	
 	bool 	mainPowerOff();
 	bool 	mainPowerOn();
 	void	powerToggle();
+	
 	
 };
 

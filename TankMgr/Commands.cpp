@@ -18,49 +18,52 @@
 
 
 // Library header
+#include "LEDs.h"
 #include "Commands.h"
 #include "WireComm.h"
 #include "Ultrasonic.h"
 
 extern Ultrasonic ultrasonic;
+extern LEDs leds;
 
 Commands::Commands() {
 	
+	pinMode( V_IN_PIN, INPUT );
 	mode = initialMode;
 	status = 0;
-	pinMode( V_IN_PIN, INPUT );
-//	delay( 20 );		// mSec
-	vIn = analogRead( V_IN_PIN );
-	Serial.print("Commands initialization with vIn: ");
-	Serial.println( vIn );
 	stateBits = 0x4030;		// Test: @0
 	last = 0;
 	next = 0;
 	range = 0;
+	vIn = analogRead( V_IN_PIN );
+	Serial.print("Commands initialization with vIn: ");
+	Serial.println( vIn );
 }
 
-// REMOTE commands are handled here
+// REMOTE commands (writes from the Pi) are handled here
 // Called if it seems to be a command and returns true if command succeeds
 bool Commands::parseCommand( byte command, byte parameter ) {
-//	Serial.print( "In parseCommand: " );
-//	Serial.println( command );
 	int succeeds = false;
-
 	switch ( command ) {		// Modes determine how read data is structured
 		case 'p':				// Ping
 			mode = rangeMode;
-//			Serial.println( "Range mode active" );
 			next = parameter;	// When next range is measured, this becomes an index
 			ultrasonic.ranger( parameter );
 			succeeds = true;
 			break;
 		case 's':				// Status
 			mode = statusMode;
-//			Serial.println( "Status mode active" );
+			succeeds = true;
+			break;
+		case 'v':				// Power relay enable
+			if ( 0 == parameter ) {
+				leds.mainPowerOff();
+			} else {
+				leds.mainPowerOn();
+			}
 			succeeds = true;
 			break;
 	}
-	
 	return succeeds;
 }
 
@@ -79,6 +82,7 @@ bool Commands::handleRequest() {
 			Wire.write( (uint8_t)(vIn & 0xFF) );
 			Wire.write( (uint8_t)((stateBits >> 8) & 0xFF) );
 			Wire.write( (uint8_t)(stateBits & 0xFF) );
+			mode = statusMode;
 			break;
 			
 		case rangeMode:
@@ -88,10 +92,6 @@ bool Commands::handleRequest() {
 			Wire.write( (uint8_t)(last & 0xFF) );
 			Wire.write( (uint8_t)((range >> 8) & 0xFF) );
 			Wire.write( (uint8_t)(range & 0xFF) );
-//			Wire.write( (uint8_t)1 );
-//			Wire.write( (uint8_t)2 );
-//			Wire.write( (uint8_t)3 );
-//			Wire.write( (uint8_t)4 );
 			break;
 			
 		default:

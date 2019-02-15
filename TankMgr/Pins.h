@@ -10,6 +10,8 @@
 #define Pins_h
 
 #define V_IN_PIN				A0		// Analog port 0, pin 18
+#define V_5_PIN					A1		// Analog port 1, pin 19
+#define V_-_PIN					A2		// Analog port 2, pin 20
 
 //#define PulseDetectPin		7
 #define TrigPin					7		// Pulse output control pin for 3 or 4 pin ultrasonic range detector

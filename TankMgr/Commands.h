@@ -36,7 +36,7 @@ enum ControllerMode {
 class Commands {
 	
 public:
-	explicit	Commands();
+	explicit			Commands();
 
 	long				status;		// Current status of this device
 	ControllerMode		mode;
@@ -48,8 +48,8 @@ public:
 	int					next;
 	int					range;
 
-	bool parseCommand( byte command, byte parameter );
-	bool handleRequest();
+	bool 				parseCommand( byte command, byte parameter );
+	bool 				handleRequest();
 };
 
 #endif // Commands_h
