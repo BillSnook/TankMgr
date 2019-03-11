@@ -18,13 +18,13 @@
 
 
 // Library header
-#include "LEDs.h"
+#include "PinControl.h"
 #include "Commands.h"
 #include "WireComm.h"
 #include "Ultrasonic.h"
 
 extern Ultrasonic ultrasonic;
-extern LEDs leds;
+extern PinControl pinControl;
 
 Commands::Commands() {
 	
@@ -57,9 +57,9 @@ bool Commands::parseCommand( byte command, byte parameter ) {
 			break;
 		case 'v':				// Power relay enable
 			if ( 0 == parameter ) {
-				leds.mainPowerOff();
+				pinControl.mainPowerOff();
 			} else {
-				leds.mainPowerOn();
+				pinControl.mainPowerOn();
 			}
 			succeeds = true;
 			break;

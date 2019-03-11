@@ -27,7 +27,7 @@
 #	LiquidCrystal RobotIRremote Robot_Control Robot_Motor SD Servo 
 #	SpacebrewYun Stepper TFT Temboo WiFi 
 #
-APP_LIBS_LIST = Wire
+APP_LIBS_LIST = Wire Servo
 
 # List user's libraries here
 # !!! Help: http://bit.ly/2AEscDx

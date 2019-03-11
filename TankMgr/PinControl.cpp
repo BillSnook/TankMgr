@@ -1,5 +1,5 @@
 //
-// LEDs.cpp
+// PinControl.cpp
 // Library C++ code
 // ----------------------------------
 // Developed with embedXcode
@@ -14,10 +14,12 @@
 //
 
 
-#include "LEDs.h"
+#include "PinControl.h"
+#include "Servo.h"
 
+Servo	scanner;
 
-LEDs::LEDs() {
+PinControl::PinControl() {
 	
 	ledState = LOW;				// ledState used to set the LED
 	previousMillis = 0;			// will store last time LED was updated
@@ -26,27 +28,32 @@ LEDs::LEDs() {
 	isInitialized = false;
 	isRunning = false;
 	mainPowerState = false;
+	rpiPowerState = false;
 }
 
-bool LEDs::setupForLEDs() {
+bool PinControl::setupPins() {
 	
 	pinMode( ledPin, OUTPUT );
 	digitalWrite( ledPin, LOW );
 	pinMode( MainPowerPin, OUTPUT );
 	digitalWrite( MainPowerPin, LOW );
+	pinMode( RPiPowerPin, OUTPUT );
+	digitalWrite( RPiPowerPin, LOW );
+
+	scanner.attach( ScannerPin );
 
 	isInitialized = true;
 	isRunning = true;
 	return true;
 }
 
-bool LEDs::resetForLEDs() {
+bool PinControl::resetPins() {
 	
 	isRunning = false;
 	return true;
 }
 
-void LEDs::toggle() {
+void PinControl::toggle() {
 	
 	if ( !isInitialized || !isRunning ) {
 		digitalWrite( ledPin, LOW );
@@ -67,17 +74,17 @@ void LEDs::toggle() {
 }
 
 // Power management
-bool LEDs::mainPowerOff() {
+bool PinControl::mainPowerOff() {
 	
 	digitalWrite( MainPowerPin, LOW );
 }
 
-bool LEDs::mainPowerOn() {
+bool PinControl::mainPowerOn() {
 	
 	digitalWrite( MainPowerPin, HIGH );
 }
 
-void LEDs::powerToggle() {
+void PinControl::powerToggle() {
 	
 	if ( mainPowerState ) {
 		mainPowerOff();
@@ -85,4 +92,19 @@ void LEDs::powerToggle() {
 		mainPowerOn();
 	}
 	mainPowerState = !mainPowerState;
+}
+
+bool PinControl::piPowerOff() {
+	
+	digitalWrite( RPiPowerPin, LOW );
+}
+
+bool PinControl::piPowerOn() {
+	
+	digitalWrite( RPiPowerPin, HIGH );
+}
+
+void PinControl::setAngle( int angle ) {
+	
+	scanner.write( angle );
 }

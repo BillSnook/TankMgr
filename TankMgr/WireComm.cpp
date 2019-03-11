@@ -55,7 +55,7 @@ void WireComm::resetForWireComm() {
 
 // MARK: These I2C slave callback routines handle writes and reads from the I2C master
 
-// function that executes whenever data is requested by a master when it reads data
+// function that executes whenever data is requested by an I2C master when it reads data
 // this function is registered as an event, see setup()
 void WireComm::requestEvent() {
 	
@@ -64,7 +64,7 @@ void WireComm::requestEvent() {
 }
 
 // REMOTE data reception is handled here
-// function that executes whenever data is received from master when it writes
+// function that executes whenever data is received from I2C master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
 //	Serial.print("Got receiveEvent to accept write, howMany: ");

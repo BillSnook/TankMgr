@@ -18,16 +18,18 @@
 
 #include <Arduino.h>
 
-#include "LEDs.h"
+#include "PinControl.h"
 #include "Ultrasonic.h"
 #include "WireComm.h"
 #include "Commands.h"
+#include "Monitor.h"
 
 
-LEDs			leds;
+PinControl		pinControl;
 Ultrasonic		ultrasonic;
 WireComm		wireComm;			// I2C functions and test commands
 Commands		commands;
+Monitor			monitor;
 
 String			inputString;		// a String to hold incoming data
 boolean			stringComplete;		// whether the string is complete
@@ -43,10 +45,10 @@ void setup() {
 	Serial.println( "" );
 
 	// set the digital pin as output:
-	leds = LEDs();
-	leds.setupForLEDs();
+	pinControl = PinControl();
+	pinControl.setupPins();
 
-	leds.mainPowerOff();	// Set power off to motors and servos at startup
+	pinControl.mainPowerOff();	// Set power off to motors and servos at startup
 
 	ultrasonic = Ultrasonic();
 	ultrasonic.setupForUltrasonic();
@@ -54,6 +56,8 @@ void setup() {
 	// Wrapper for Wire class which writes to I2C
 	wireComm = WireComm();
 	wireComm.setupForWireComm( false );	// true for master, false for slave
+	
+	monitor = Monitor();
 
 	commands = Commands();
 	
@@ -62,19 +66,61 @@ void setup() {
 	Serial.println( "Setup complete - ok" );
 }
 
-void loop() {
+void parseCommand() {
+	// Execute commands with parameters here
+//	Serial.print( "In parseCommand with inputString length: " );
+//	Serial.println( inputString.length() );
+	if ( inputString.length() > 1 ) {	// Ensure more than just eol and maybe one character
+		char firstChar = inputString[0];
+		char param = inputString[1];
+		switch ( firstChar ) {
+				
+			case 'a': {
+				int i = 1;
+				int angle = 0;
+				while ( ( param != '\n' ) && ( param != '\r' ) ) {
+					angle = ( angle * 10 ) + ( param - '0' );
+					i++;
+					param = inputString[i];
+				}
+				Serial.print( "Set scanner to " );
+				Serial.print( angle );
+				Serial.println( " degrees" );
+				pinControl.setAngle( angle );
+				}
+				break;
 
-//	Serial.print( "+" );
-	if ( stringComplete ) {
-		inputString = "New: " + inputString;
-		Serial.println( inputString );
-		// clear the string:
+			default:
+				break;
+				
+		}
+	} else {
+		Serial.println( "Error in parseCommand, unexpected inputString length" );
+	}
+
+}
+
+// Main run loop
+void loop() {
+	
+	//	Serial.print( "+" );
+	if ( stringComplete ) {	// Check for and respond to serial commands
+		//		inputString = "New: " + inputString;
+		//		Serial.println( inputString );
+		
+		parseCommand();
+		
+		// Done processing local command, clear the string:
 		inputString = "";
 		stringComplete = false;
 	}
-
-	leds.toggle();			// Check if it is time to toggle LEDs
+	
+	pinControl.toggle();			// Check if it is time to toggle LEDs
+	
+	//	monitor.statusCheck();	// Take regular measurements and check important system states
 }
+
+
 
 // SerialEvent occurs whenever new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
@@ -82,41 +128,59 @@ void loop() {
 void serialEvent() {
 	while ( Serial.available() ) {			// DEBUG commands are here
 		char inChar = (char)Serial.read();
-		if ( inputString.length() == 0 ) {	// If first char of new string
-			Serial.print( inChar );
+		if ( inputString.length() == 0 ) {	// If first char of new string,
+											// we may have a special 'quick' command:
+											// one character, perform immediately
 			switch ( inChar ) {
-
+					
 				case '0':
-					leds.mainPowerOff();
-					continue;
+					pinControl.mainPowerOff();
+					Serial.println( "Main power off" );
+					return;
 					
 				case '1':
-					leds.mainPowerOn();
-					continue;
+					pinControl.mainPowerOn();
+					Serial.println( "Main power on" );
+					return;
+					
+				case '2':
+					pinControl.piPowerOff();
+					Serial.println( "Pi power off" );
+					return;
+					
+				case '3':
+					pinControl.piPowerOn();
+					Serial.println( "Pi power on" );
+					return;
 					
 				case 'l':
-					leds.isRunning = !leds.isRunning;
-					leds.interval = 1000;
-					continue;
-
+					pinControl.isRunning = !pinControl.isRunning;
+					pinControl.interval = 1000;
+					Serial.println( "Toggle LED, 1 second intervals" );
+					return;
+					
 				case 'm':
-					leds.isRunning = !leds.isRunning;
-					leds.interval = 100;
-					continue;
-
+					pinControl.isRunning = !pinControl.isRunning;
+					pinControl.interval = 100;
+					Serial.println( "Toggle LED, 1/10 second intervals" );
+					return;
+					
 				case 'p':
 					ultrasonic.pingSerialDisplay( 0, true );
-					continue;
+					Serial.println( "Ping and print results" );
+					return;
 					
 				case 'v':
-					leds.powerToggle();
-					continue;
-					
+					pinControl.powerToggle();
+					Serial.println( "Main power toggle" );
+					return;
+
 				default:
 					break;
-
 			}
 		}
+
+		Serial.print( inChar );
 		inputString += inChar;
 		if ( ( inChar == '\n' ) || ( inChar == '\r' ) ) {
 			stringComplete = true;

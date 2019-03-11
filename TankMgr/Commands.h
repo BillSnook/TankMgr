@@ -19,7 +19,6 @@
 ///
 
 
-#include "Arduino.h"
 #include "Pins.h"
 
 #ifndef Commands_h

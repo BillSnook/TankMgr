@@ -100,14 +100,14 @@ long Ultrasonic::pingSerialDisplay( int index, bool print ) {
 	
 	long result = ping();			// get the current signal time into duration
 
-	long cm = microsecondsToCentimeters();
-	long mm = microsecondsToMillimeters();
-	long in = microsecondsToInches();
-
 	if ( print ) {
+		long cm = microsecondsToCentimeters();
+		long mm = microsecondsToMillimeters();
+		long in = microsecondsToInches();
 		char angle[8];
 		char pulse[8];
-		sprintf( pulse, "%5u", duration );
+		
+		sprintf( pulse, "%5u", result );
 		sprintf( angle, "%3d", index );
 		Serial.print( pulse );
 		Serial.print( " uS, " );

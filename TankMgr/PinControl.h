@@ -1,5 +1,5 @@
 ///
-/// @file		LEDs.h
+/// @file		PinControl.h
 /// @author		William Snook
 /// @author		billsnook
 ///
@@ -13,7 +13,7 @@
 #include "Pins.h"
 
 
-class LEDs {
+class PinControl {
 	
 //	bool    		debug;
 	int				ledPin =  LED_BUILTIN;		// the number of the LED pin
@@ -21,16 +21,19 @@ class LEDs {
 	unsigned long	previousMillis;				// will store last time LED was updated
 
 	bool			isInitialized;
+	
+	int				angle;						// Servo angle for scanner
 
 public:
 	bool			isRunning;
 	long			interval;					// blink interval (milliseconds)
 	boolean			mainPowerState;
+	boolean			rpiPowerState;
 
-	explicit LEDs();
+	explicit PinControl();
 
-	bool	setupForLEDs();
-	bool	resetForLEDs();
+	bool	setupPins();
+	bool	resetPins();
 	void	toggle();
 	
 	bool 	mainPowerOff();
@@ -38,6 +41,11 @@ public:
 	void	powerToggle();
 	
 	
+	bool 	piPowerOff();
+	bool 	piPowerOn();
+	
+	void	setAngle( int angle );
+
 };
 
 #endif // LEDs_h

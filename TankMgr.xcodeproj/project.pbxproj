@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A92F205A21DFCBD100DF77E3 /* TankMgr.ino in Sources */ = {isa = PBXBuildFile; fileRef = A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */; };
-		A92F207021DFCD7800DF77E3 /* LEDs.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207021DFCD7800DF77E3 /* LEDs.h */; };
+		A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207021DFCD7800DF77E3 /* PinControl.h */; };
 		A981572F21EBC846003B360C /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A981572E21EBC846003B360C /* Commands.cpp */; };
 		A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* main.cpp */; };
-		A9AF207121DFCD7800DF77E3 /* LEDs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF206F21DFCD7800DF77E3 /* LEDs.cpp */; };
+		A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */; };
 		A9AF207421DFD1F400DF77E3 /* Ultrasonic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */; };
 		A9AF207D21E1395900DF77E3 /* WireComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207B21E1395800DF77E3 /* WireComm.cpp */; };
+		A9C4AF982221C6C300BA654A /* Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C4AF962221C6C300BA654A /* Monitor.cpp */; };
 		AA2A190104093110AA000005 /* Arduino.h in Sources */ = {isa = PBXBuildFile; fileRef = AAAA190104093110AA000005 /* Arduino.h */; };
 		AA2A190104093110AA000006 /* CDC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAA190104093110AA000006 /* CDC.cpp */; };
 		AA2A190104093110AA000007 /* Client.h in Sources */ = {isa = PBXBuildFile; fileRef = AAAA190104093110AA000007 /* Client.h */; };
@@ -511,12 +512,14 @@
 		A9AF205821DFCBD100DF77E3 /* embedXcode_chrono */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = embedXcode_chrono; path = Utilities/embedXcode_chrono; sourceTree = "<group>"; };
 		A9AF205921DFCBD100DF77E3 /* TemplateIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TemplateIcon.icns; path = Utilities/TemplateIcon.icns; sourceTree = "<group>"; };
 		A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = TankMgr.ino; sourceTree = "<group>"; };
-		A9AF206F21DFCD7800DF77E3 /* LEDs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LEDs.cpp; sourceTree = "<group>"; };
-		A9AF207021DFCD7800DF77E3 /* LEDs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEDs.h; sourceTree = "<group>"; };
+		A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PinControl.cpp; sourceTree = "<group>"; };
+		A9AF207021DFCD7800DF77E3 /* PinControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinControl.h; sourceTree = "<group>"; };
 		A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ultrasonic.h; sourceTree = "<group>"; };
 		A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ultrasonic.cpp; sourceTree = "<group>"; };
 		A9AF207B21E1395800DF77E3 /* WireComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WireComm.cpp; sourceTree = "<group>"; };
 		A9AF207C21E1395900DF77E3 /* WireComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireComm.h; sourceTree = "<group>"; };
+		A9C4AF962221C6C300BA654A /* Monitor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Monitor.cpp; sourceTree = "<group>"; };
+		A9C4AF972221C6C300BA654A /* Monitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Monitor.h; sourceTree = "<group>"; };
 		A9F40C3321FCCAA5007B9EE0 /* Pins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pins.h; sourceTree = "<group>"; };
 		AAAA190104093110AA000005 /* Arduino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arduino.h; sourceTree = "<group>"; };
 		AAAA190104093110AA000006 /* CDC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDC.cpp; sourceTree = "<group>"; };
@@ -954,14 +957,16 @@
 				A9AF200621DFCBD000DF77E3 /* ReadMe.txt */,
 				A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */,
 				A9F40C3321FCCAA5007B9EE0 /* Pins.h */,
-				A9AF207021DFCD7800DF77E3 /* LEDs.h */,
-				A9AF206F21DFCD7800DF77E3 /* LEDs.cpp */,
+				A9AF207021DFCD7800DF77E3 /* PinControl.h */,
+				A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */,
 				A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */,
 				A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */,
 				A9AF207C21E1395900DF77E3 /* WireComm.h */,
 				A9AF207B21E1395800DF77E3 /* WireComm.cpp */,
 				A981572D21EBC845003B360C /* Commands.h */,
 				A981572E21EBC846003B360C /* Commands.cpp */,
+				A9C4AF972221C6C300BA654A /* Monitor.h */,
+				A9C4AF962221C6C300BA654A /* Monitor.cpp */,
 				A9AF200721DFCBD000DF77E3 /* Sketchbook */,
 				AAAA190104093110AA000000 /* Resources */,
 				A9AF200921DFCBD000DF77E3 /* Configurations */,
@@ -2234,10 +2239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9AF207121DFCD7800DF77E3 /* LEDs.cpp in Sources */,
+				A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */,
 				A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */,
 				A92F205A21DFCBD100DF77E3 /* TankMgr.ino in Sources */,
-				A92F207021DFCD7800DF77E3 /* LEDs.h in Sources */,
+				A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */,
 				AA2A190104093110AA000005 /* Arduino.h in Sources */,
 				AA2A190104093110AA000006 /* CDC.cpp in Sources */,
 				AA2A190104093110AA000007 /* Client.h in Sources */,
@@ -2390,6 +2395,7 @@
 				AA2A190104093110AA0000C1 /* GSM3MobileNetworkRegistry.h in Sources */,
 				AA2A190104093110AA0000C2 /* GSM3MobileSMSProvider.cpp in Sources */,
 				AA2A190104093110AA0000C3 /* GSM3MobileSMSProvider.h in Sources */,
+				A9C4AF982221C6C300BA654A /* Monitor.cpp in Sources */,
 				AA2A190104093110AA0000C4 /* GSM3MobileServerProvider.cpp in Sources */,
 				AA2A190104093110AA0000C5 /* GSM3MobileServerProvider.h in Sources */,
 				AA2A190104093110AA0000C6 /* GSM3MobileServerService.cpp in Sources */,
