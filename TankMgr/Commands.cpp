@@ -77,6 +77,7 @@ bool Commands::handleRequest() {
 			break;
 
 		case statusMode:
+		case scanMode:
 			vIn = analogRead( V_IN_PIN );
 			Wire.write( (uint8_t)((vIn >> 8) & 0xFF) );
 			Wire.write( (uint8_t)(vIn & 0xFF) );

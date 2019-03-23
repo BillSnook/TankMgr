@@ -28,7 +28,8 @@
 enum ControllerMode {
 	initialMode = 0,
 	statusMode,
-	rangeMode
+	rangeMode,
+	scanMode
 };
 
 

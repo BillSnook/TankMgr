@@ -41,6 +41,7 @@ bool PinControl::setupPins() {
 	digitalWrite( RPiPowerPin, LOW );
 
 	scanner.attach( ScannerPin );
+	scanner.write( 90 );
 
 	isInitialized = true;
 	isRunning = true;

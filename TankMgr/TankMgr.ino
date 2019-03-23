@@ -75,7 +75,7 @@ void parseCommand() {
 		char param = inputString[1];
 		switch ( firstChar ) {
 				
-			case 'a': {
+			case 's': {			// s0\n or s90\n or s180\n
 				int i = 1;
 				int angle = 0;
 				while ( ( param != '\n' ) && ( param != '\r' ) ) {
@@ -151,6 +151,16 @@ void serialEvent() {
 				case '3':
 					pinControl.piPowerOn();
 					Serial.println( "Pi power on" );
+					return;
+					
+				case 'a':				// Scanner
+					pinControl.setAngle( 0 );
+					return;
+				case 'b':				// Scanner
+					pinControl.setAngle( 90 );
+					return;
+				case 'c':				// Scanner
+					pinControl.setAngle( 180 );
 					return;
 					
 				case 'l':
