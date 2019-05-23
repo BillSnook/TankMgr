@@ -20,6 +20,7 @@
 #define TrigPin					7		// Pulse output control pin for 3 or 4 pin ultrasonic range detector
 #define EchoPin					6		// Echo input detect pin for 4 pin ultrasonic range detector
 
+#define LidarDonePin			8		// Completion input from light range detector
 #define ScannerPin				9		// PWM output to control 180 degree servo with ultrasonic range detector
 
 #define MainPowerPin			12		// Output to main-power-to-motor-driver relay

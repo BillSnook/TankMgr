@@ -35,6 +35,7 @@ String			inputString;		// a String to hold incoming data
 boolean			stringComplete;		// whether the string is complete
 
 
+// Main setup routine
 void setup() {
 
 	Serial.begin(115200);
@@ -66,6 +67,7 @@ void setup() {
 	Serial.println( "Setup complete - ok" );
 }
 
+
 void parseCommand() {
 	// Execute commands with parameters here
 //	Serial.print( "In parseCommand with inputString length: " );
@@ -89,6 +91,23 @@ void parseCommand() {
 				pinControl.setAngle( angle );
 				}
 				break;
+				
+			case 'q':			// q0\n or q90\n
+				int i = 1;
+				int angle = 0;
+				while ( ( param != '\n' ) && ( param != '\r' ) ) {
+					angle = ( angle * 10 ) + ( param - '0' );
+					i++;
+					param = inputString[i];
+				}
+				Serial.print( "Set scanner to " );
+				Serial.print( angle );
+				Serial.println( " degrees" );
+				pinControl.setAngle( angle );
+				delay( 200 );	// Wait for angle to be reached
+				ultrasonic.ranger( angle );
+
+				break;
 
 			default:
 				break;
@@ -105,11 +124,10 @@ void loop() {
 	
 	//	Serial.print( "+" );
 	if ( stringComplete ) {	// Check for and respond to serial commands
-		//		inputString = "New: " + inputString;
-		//		Serial.println( inputString );
+//		inputString = "New: " + inputString;
+//		Serial.println( inputString );
 		
 		parseCommand();
-		
 		// Done processing local command, clear the string:
 		inputString = "";
 		stringComplete = false;
@@ -117,7 +135,7 @@ void loop() {
 	
 	pinControl.toggle();			// Check if it is time to toggle LEDs
 	
-	//	monitor.statusCheck();	// Take regular measurements and check important system states
+//	monitor.statusCheck();	// Take regular measurements and check important system states
 }
 
 

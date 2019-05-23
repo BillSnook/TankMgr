@@ -35,7 +35,7 @@ void Ultrasonic::ranger( int parameter ) {
 	
 	next = parameter;
 //	range = ping();
-	range = pingSerialDisplay( parameter, true );	// Ping and show results to Serial port
+	range = pingSerialDisplay( parameter, true );	// Ping and show results on Serial port
 	last = parameter;
 }
 
@@ -96,7 +96,7 @@ void Ultrasonic::pingPeriodicDisplay() {
 	Serial.println(" cm");
 }
 
-long Ultrasonic::pingSerialDisplay( int index, bool print ) {
+long Ultrasonic::pingSerialDisplay( int inAngle, bool print ) {
 	
 	long result = ping();			// get the current signal time into duration
 
@@ -108,7 +108,7 @@ long Ultrasonic::pingSerialDisplay( int index, bool print ) {
 		char pulse[8];
 		
 		sprintf( pulse, "%5u", result );
-		sprintf( angle, "%3d", index );
+		sprintf( angle, "%3d", inAngle );
 		Serial.print( pulse );
 		Serial.print( " uS, " );
 		Serial.print( angle );

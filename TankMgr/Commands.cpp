@@ -45,9 +45,13 @@ Commands::Commands() {
 bool Commands::parseCommand( byte command, byte parameter ) {
 	int succeeds = false;
 	switch ( command ) {		// Modes determine how read data is structured
-		case 'p':				// Ping
+		case 'p':				// Ping - parameter is the angle
 			mode = rangeMode;
+			int	angleMs = abs( parameter - next );	// Change of angle
 			next = parameter;	// When next range is measured, this becomes an index
+			pinControl.setAngle( parameter );
+			angleMs *= 20;		// 20 ms x angle_to_be_moved
+			delay( angleMs );	// Wait for angle to be reached
 			ultrasonic.ranger( parameter );
 			succeeds = true;
 			break;

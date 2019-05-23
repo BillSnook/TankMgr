@@ -23,7 +23,7 @@ PinControl::PinControl() {
 	
 	ledState = LOW;				// ledState used to set the LED
 	previousMillis = 0;			// will store last time LED was updated
-	interval = 1000;			// blink interval (milliseconds)
+	interval = 500;				// blink interval (milliseconds)
 
 	isInitialized = false;
 	isRunning = false;
@@ -39,9 +39,11 @@ bool PinControl::setupPins() {
 	digitalWrite( MainPowerPin, LOW );
 	pinMode( RPiPowerPin, OUTPUT );
 	digitalWrite( RPiPowerPin, LOW );
+	pinMode( LidarDonePin, INPUT );
+
 
 	scanner.attach( ScannerPin );
-	scanner.write( 90 );
+	setAngle( 90 );
 
 	isInitialized = true;
 	isRunning = true;
@@ -107,5 +109,6 @@ bool PinControl::piPowerOn() {
 
 void PinControl::setAngle( int angle ) {
 	
-	scanner.write( angle );
+	int offset = -5;
+	scanner.write( angle + offset );
 }
