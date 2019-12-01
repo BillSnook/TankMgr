@@ -39,11 +39,14 @@ boolean			stringComplete;		// whether the string is complete
 void setup() {
 
 	Serial.begin(115200);
-	while(!Serial) {}	// Wait for it to be ready
+	while(!Serial) {}                   // Wait for it to be ready
+    while ( Serial.available() ) {      // Clear buffer
+        char inChar = (char)Serial.read();
+    }
 
 	inputString = "";
 	inputString.reserve(200);	// reserve 200 bytes for the inputString
-	Serial.println( "" );
+//	Serial.println( "" );
 
 	// set the digital pin as output:
 	pinControl = PinControl();

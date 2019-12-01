@@ -35,7 +35,7 @@ void Ultrasonic::ranger( int parameter ) {
 	
 	next = parameter;
 //	range = ping();
-	range = pingSerialDisplay( parameter, true );	// Ping and show results on Serial port
+	range = pingSerialDisplay( parameter, false );	// Ping and show results on Serial port
 	last = parameter;
 }
 
@@ -107,12 +107,12 @@ long Ultrasonic::pingSerialDisplay( int inAngle, bool print ) {
 		char angle[8];
 		char pulse[8];
 		
-		sprintf( pulse, "%5u", result );
 		sprintf( angle, "%3d", inAngle );
-		Serial.print( pulse );
-		Serial.print( " uS, " );
+		sprintf( pulse, "%5u", result );
 		Serial.print( angle );
 		Serial.print("º: ");
+		Serial.print( pulse );
+		Serial.print( " uS, " );
 		Serial.print( cm );	//0~400cm
 		Serial.print(" cm, " );	//0~300cm
 		Serial.print( mm );	//0~400mcm

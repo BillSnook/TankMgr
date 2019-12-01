@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A92F205A21DFCBD100DF77E3 /* TankMgr.ino in Sources */ = {isa = PBXBuildFile; fileRef = A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */; };
+		A92F205A21DFCBD100DF77E3 /* TankMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */; };
 		A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207021DFCD7800DF77E3 /* PinControl.h */; };
 		A981572F21EBC846003B360C /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A981572E21EBC846003B360C /* Commands.cpp */; };
 		A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* main.cpp */; };
@@ -486,32 +486,7 @@
 		A9AF203B21DFCBD100DF77E3 /* Teensy 3.5.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Teensy 3.5.xcconfig"; path = "Configurations/Teensy 3.5.xcconfig"; sourceTree = "<group>"; };
 		A9AF203C21DFCBD100DF77E3 /* Teensy 3.6.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Teensy 3.6.xcconfig"; path = "Configurations/Teensy 3.6.xcconfig"; sourceTree = "<group>"; };
 		A9AF203D21DFCBD100DF77E3 /* Teensy LC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Teensy LC.xcconfig"; path = "Configurations/Teensy LC.xcconfig"; sourceTree = "<group>"; };
-		A9AF203F21DFCBD100DF77E3 /* ArduinoAVR_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ArduinoAVR_180.mk; path = Makefiles/ArduinoAVR_180.mk; sourceTree = "<group>"; };
-		A9AF204021DFCBD100DF77E3 /* ArduinoAVR_181.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ArduinoAVR_181.mk; path = Makefiles/ArduinoAVR_181.mk; sourceTree = "<group>"; };
-		A9AF204121DFCBD100DF77E3 /* ArduinoSAM_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ArduinoSAM_180.mk; path = Makefiles/ArduinoSAM_180.mk; sourceTree = "<group>"; };
-		A9AF204221DFCBD100DF77E3 /* ArduinoSAMD_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ArduinoSAMD_180.mk; path = Makefiles/ArduinoSAMD_180.mk; sourceTree = "<group>"; };
-		A9AF204321DFCBD100DF77E3 /* chipKIT_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = chipKIT_180.mk; path = Makefiles/chipKIT_180.mk; sourceTree = "<group>"; };
-		A9AF204421DFCBD100DF77E3 /* EnergiaMSP430_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaMSP430_18.mk; path = Makefiles/EnergiaMSP430_18.mk; sourceTree = "<group>"; };
-		A9AF204521DFCBD100DF77E3 /* EnergiaMSP430_19.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaMSP430_19.mk; path = Makefiles/EnergiaMSP430_19.mk; sourceTree = "<group>"; };
-		A9AF204621DFCBD100DF77E3 /* EnergiaMSP432EMT_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaMSP432EMT_18.mk; path = Makefiles/EnergiaMSP432EMT_18.mk; sourceTree = "<group>"; };
-		A9AF204721DFCBD100DF77E3 /* EnergiaMSP432REDEMT_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaMSP432REDEMT_18.mk; path = Makefiles/EnergiaMSP432REDEMT_18.mk; sourceTree = "<group>"; };
-		A9AF204821DFCBD100DF77E3 /* EnergiaTIVAC_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaTIVAC_18.mk; path = Makefiles/EnergiaTIVAC_18.mk; sourceTree = "<group>"; };
-		A9AF204921DFCBD100DF77E3 /* EnergiaCC3200_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaCC3200_18.mk; path = Makefiles/EnergiaCC3200_18.mk; sourceTree = "<group>"; };
-		A9AF204A21DFCBD100DF77E3 /* EnergiaCC3200EMT_18.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = EnergiaCC3200EMT_18.mk; path = Makefiles/EnergiaCC3200EMT_18.mk; sourceTree = "<group>"; };
-		A9AF204B21DFCBD100DF77E3 /* ESP8266_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ESP8266_180.mk; path = Makefiles/ESP8266_180.mk; sourceTree = "<group>"; };
-		A9AF204C21DFCBD100DF77E3 /* ftDuino_180.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = ftDuino_180.mk; path = Makefiles/ftDuino_180.mk; sourceTree = "<group>"; };
-		A9AF204D21DFCBD100DF77E3 /* Teensy.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Teensy.mk; path = Makefiles/Teensy.mk; sourceTree = "<group>"; };
-		A9AF204E21DFCBD100DF77E3 /* Teensy2.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Teensy2.mk; path = Makefiles/Teensy2.mk; sourceTree = "<group>"; };
-		A9AF204F21DFCBD100DF77E3 /* Teensy3.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Teensy3.mk; path = Makefiles/Teensy3.mk; sourceTree = "<group>"; };
-		A9AF205021DFCBD100DF77E3 /* About.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = About.mk; path = Makefiles/About.mk; sourceTree = "<group>"; };
-		A9AF205121DFCBD100DF77E3 /* Step1.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Step1.mk; path = Makefiles/Step1.mk; sourceTree = "<group>"; };
-		A9AF205221DFCBD100DF77E3 /* Step2.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Step2.mk; path = Makefiles/Step2.mk; sourceTree = "<group>"; };
-		A9AF205321DFCBD100DF77E3 /* Avrdude.mk */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; name = Avrdude.mk; path = Makefiles/Avrdude.mk; sourceTree = "<group>"; };
-		A9AF205521DFCBD100DF77E3 /* reset_1200.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; name = reset_1200.py; path = Utilities/reset_1200.py; sourceTree = "<group>"; };
-		A9AF205721DFCBD100DF77E3 /* embedXcode_check */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = embedXcode_check; path = Utilities/embedXcode_check; sourceTree = "<group>"; };
-		A9AF205821DFCBD100DF77E3 /* embedXcode_chrono */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = embedXcode_chrono; path = Utilities/embedXcode_chrono; sourceTree = "<group>"; };
-		A9AF205921DFCBD100DF77E3 /* TemplateIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = TemplateIcon.icns; path = Utilities/TemplateIcon.icns; sourceTree = "<group>"; };
-		A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = TankMgr.ino; sourceTree = "<group>"; };
+		A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = TankMgr.cpp; sourceTree = "<group>"; };
 		A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PinControl.cpp; sourceTree = "<group>"; };
 		A9AF207021DFCD7800DF77E3 /* PinControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinControl.h; sourceTree = "<group>"; };
 		A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ultrasonic.h; sourceTree = "<group>"; };
@@ -955,7 +930,7 @@
 				A9AF200221DFCBD000DF77E3 /* main.cpp */,
 				A9AF200421DFCBD000DF77E3 /* Makefile */,
 				A9AF200621DFCBD000DF77E3 /* ReadMe.txt */,
-				A9AF205A21DFCBD100DF77E3 /* TankMgr.ino */,
+				A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */,
 				A9F40C3321FCCAA5007B9EE0 /* Pins.h */,
 				A9AF207021DFCD7800DF77E3 /* PinControl.h */,
 				A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */,
@@ -970,8 +945,6 @@
 				A9AF200721DFCBD000DF77E3 /* Sketchbook */,
 				AAAA190104093110AA000000 /* Resources */,
 				A9AF200921DFCBD000DF77E3 /* Configurations */,
-				A9AF203E21DFCBD100DF77E3 /* Makefiles */,
-				A9AF205421DFCBD100DF77E3 /* Utilities */,
 			);
 			path = TankMgr;
 			sourceTree = "<group>";
@@ -1041,45 +1014,6 @@
 				A9AF203D21DFCBD100DF77E3 /* Teensy LC.xcconfig */,
 			);
 			name = Configurations;
-			sourceTree = "<group>";
-		};
-		A9AF203E21DFCBD100DF77E3 /* Makefiles */ = {
-			isa = PBXGroup;
-			children = (
-				A9AF203F21DFCBD100DF77E3 /* ArduinoAVR_180.mk */,
-				A9AF204021DFCBD100DF77E3 /* ArduinoAVR_181.mk */,
-				A9AF204121DFCBD100DF77E3 /* ArduinoSAM_180.mk */,
-				A9AF204221DFCBD100DF77E3 /* ArduinoSAMD_180.mk */,
-				A9AF204321DFCBD100DF77E3 /* chipKIT_180.mk */,
-				A9AF204421DFCBD100DF77E3 /* EnergiaMSP430_18.mk */,
-				A9AF204521DFCBD100DF77E3 /* EnergiaMSP430_19.mk */,
-				A9AF204621DFCBD100DF77E3 /* EnergiaMSP432EMT_18.mk */,
-				A9AF204721DFCBD100DF77E3 /* EnergiaMSP432REDEMT_18.mk */,
-				A9AF204821DFCBD100DF77E3 /* EnergiaTIVAC_18.mk */,
-				A9AF204921DFCBD100DF77E3 /* EnergiaCC3200_18.mk */,
-				A9AF204A21DFCBD100DF77E3 /* EnergiaCC3200EMT_18.mk */,
-				A9AF204B21DFCBD100DF77E3 /* ESP8266_180.mk */,
-				A9AF204C21DFCBD100DF77E3 /* ftDuino_180.mk */,
-				A9AF204D21DFCBD100DF77E3 /* Teensy.mk */,
-				A9AF204E21DFCBD100DF77E3 /* Teensy2.mk */,
-				A9AF204F21DFCBD100DF77E3 /* Teensy3.mk */,
-				A9AF205021DFCBD100DF77E3 /* About.mk */,
-				A9AF205121DFCBD100DF77E3 /* Step1.mk */,
-				A9AF205221DFCBD100DF77E3 /* Step2.mk */,
-				A9AF205321DFCBD100DF77E3 /* Avrdude.mk */,
-			);
-			name = Makefiles;
-			sourceTree = "<group>";
-		};
-		A9AF205421DFCBD100DF77E3 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				A9AF205521DFCBD100DF77E3 /* reset_1200.py */,
-				A9AF205721DFCBD100DF77E3 /* embedXcode_check */,
-				A9AF205821DFCBD100DF77E3 /* embedXcode_chrono */,
-				A9AF205921DFCBD100DF77E3 /* TemplateIcon.icns */,
-			);
-			name = Utilities;
 			sourceTree = "<group>";
 		};
 		AAAA190104093110AA000000 /* Resources */ = {
@@ -2095,6 +2029,90 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		0000000000000000AA000001 /* Fast */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = fast;
+			buildConfigurationList = 0020000000000000AA000001 /* Build configuration list for PBXLegacyTarget "Fast" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Fast;
+			passBuildSettingsInEnvironment = 1;
+			productName = Fast;
+		};
+		0000000000000000AA000002 /* Make */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = make;
+			buildConfigurationList = 0020000000000000AA000002 /* Build configuration list for PBXLegacyTarget "Make" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Make;
+			passBuildSettingsInEnvironment = 1;
+			productName = Make;
+		};
+		0000000000000000AA000003 /* Style */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = style;
+			buildConfigurationList = 0020000000000000AA000003 /* Build configuration list for PBXLegacyTarget "Style" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Style;
+			passBuildSettingsInEnvironment = 1;
+			productName = Style;
+		};
+		0000000000000000AA000004 /* Document */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = document;
+			buildConfigurationList = 0020000000000000AA000004 /* Build configuration list for PBXLegacyTarget "Document" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Document;
+			passBuildSettingsInEnvironment = 1;
+			productName = Document;
+		};
+		0000000000000000AA000005 /* Distribute */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = distribute;
+			buildConfigurationList = 0020000000000000AA000005 /* Build configuration list for PBXLegacyTarget "Distribute" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Distribute;
+			passBuildSettingsInEnvironment = 1;
+			productName = Distribute;
+		};
+		0000000000000000AA000006 /* Debug */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = debug;
+			buildConfigurationList = 0020000000000000AA000006 /* Build configuration list for PBXLegacyTarget "Debug" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(PROJECT)";
+			dependencies = (
+			);
+			name = Debug;
+			passBuildSettingsInEnvironment = 1;
+			productName = Debug;
+		};
 		A9AF1FF821DFCBD000DF77E3 /* Build */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = build;
@@ -2192,6 +2210,24 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = billsnook;
 				TargetAttributes = {
+					0000000000000000AA000001 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					0000000000000000AA000002 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					0000000000000000AA000003 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					0000000000000000AA000004 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					0000000000000000AA000005 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					0000000000000000AA000006 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					A9AF1FF821DFCBD000DF77E3 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -2224,6 +2260,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				0000000000000000AA000001 /* Fast */,
+				0000000000000000AA000002 /* Make */,
+				0000000000000000AA000003 /* Style */,
+				0000000000000000AA000004 /* Document */,
+				0000000000000000AA000005 /* Distribute */,
+				0000000000000000AA000006 /* Debug */,
 				A9AF1FF821DFCBD000DF77E3 /* Build */,
 				A9AF1FF921DFCBD000DF77E3 /* All */,
 				A9AF1FFA21DFCBD000DF77E3 /* Boards */,
@@ -2241,7 +2283,7 @@
 			files = (
 				A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */,
 				A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */,
-				A92F205A21DFCBD100DF77E3 /* TankMgr.ino in Sources */,
+				A92F205A21DFCBD100DF77E3 /* TankMgr.cpp in Sources */,
 				A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */,
 				AA2A190104093110AA000005 /* Arduino.h in Sources */,
 				AA2A190104093110AA000006 /* CDC.cpp in Sources */,
@@ -2662,6 +2704,78 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0030000000000000AA000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0030000000000000AA000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0030000000000000AA000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0030000000000000AA000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0030000000000000AA000005 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0030000000000000AA000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		0040000000000000AA000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		0040000000000000AA000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		0040000000000000AA000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		0040000000000000AA000004 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		0040000000000000AA000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		0040000000000000AA000006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
 		A9AF205B21DFCBD100DF77E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A9AF201821DFCBD000DF77E3 /* Arduino Uno.xcconfig */;
@@ -2720,7 +2834,7 @@
 				PATH = "$(PATH):$(PROJECT_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKETCHBOOK_DIR = "";
-				UPDATE_POLICY = 0;
+				UPDATE_POLICY = 1;
 			};
 			name = Debug;
 		};
@@ -2774,7 +2888,7 @@
 				PATH = "$(PATH):$(PROJECT_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKETCHBOOK_DIR = "";
-				UPDATE_POLICY = 0;
+				UPDATE_POLICY = 1;
 			};
 			name = Release;
 		};
@@ -2879,6 +2993,60 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0020000000000000AA000001 /* Build configuration list for PBXLegacyTarget "Fast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000001 /* Release */,
+				0040000000000000AA000001 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0020000000000000AA000002 /* Build configuration list for PBXLegacyTarget "Make" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000002 /* Release */,
+				0040000000000000AA000002 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0020000000000000AA000003 /* Build configuration list for PBXLegacyTarget "Style" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000003 /* Release */,
+				0040000000000000AA000003 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0020000000000000AA000004 /* Build configuration list for PBXLegacyTarget "Document" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000004 /* Release */,
+				0040000000000000AA000004 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0020000000000000AA000005 /* Build configuration list for PBXLegacyTarget "Distribute" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000005 /* Release */,
+				0040000000000000AA000005 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0020000000000000AA000006 /* Build configuration list for PBXLegacyTarget "Debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0030000000000000AA000006 /* Release */,
+				0040000000000000AA000006 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A9AF1FF721DFCBD000DF77E3 /* Build configuration list for PBXProject "TankMgr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

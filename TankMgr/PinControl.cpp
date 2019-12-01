@@ -109,6 +109,6 @@ bool PinControl::piPowerOn() {
 
 void PinControl::setAngle( int angle ) {
 	
-	int offset = -5;
+	int offset = 0;
 	scanner.write( angle + offset );
 }
