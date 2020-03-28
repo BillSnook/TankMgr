@@ -74,11 +74,17 @@ void WireComm::receiveEvent( int howMany ) {
 		if ( Wire.available() == 2 ) {
 			byte command = Wire.read();
 			byte parameter = Wire.read();
+            Serial.print( "command: " );
+            Serial.print( command );
+            Serial.print( ", parameter: " );
+            Serial.print( parameter );
+            Serial.println( "" );                // print the end of line
 			commands.parseCommand( command, parameter );	// Handled here
 			return;
 		}
 	}
-	Serial.print( "< " );				// print the end of line
+    Serial.print( howMany );                // print the end of line
+    Serial.print( ": < " );                // print the end of line
 	while (0 < Wire.available()) {	// loop through all
 		char c = Wire.read();		// receive bytes as a character
 		Serial.print(c);			// print the character
