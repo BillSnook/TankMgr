@@ -60,7 +60,7 @@ void WireComm::resetForWireComm() {
 void WireComm::requestEvent() {
 	
 //	// Check mode then respond with appropriate data
-	bool handledIt = commands.handleRequest();
+	commands.handleRequest();
 }
 
 // REMOTE data reception is handled here

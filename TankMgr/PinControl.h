@@ -26,7 +26,7 @@ class PinControl {
 
 public:
 	bool			isRunning;
-	long			interval;					// blink interval (milliseconds)
+	unsigned long	interval;					// blink interval (milliseconds)
 	boolean			mainPowerState;
 	boolean			rpiPowerState;
 
@@ -36,13 +36,13 @@ public:
 	bool	resetPins();
 	void	toggle();
 	
-	bool 	mainPowerOff();
-	bool 	mainPowerOn();
+	void 	mainPowerOff();
+	void 	mainPowerOn();
 	void	powerToggle();
 	
 	
-	bool 	piPowerOff();
-	bool 	piPowerOn();
+	void 	piPowerOff();
+	void 	piPowerOn();
 	
 	void	setAngle( int angle );
 

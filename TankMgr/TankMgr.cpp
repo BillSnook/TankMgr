@@ -95,7 +95,7 @@ void parseCommand() {
 				}
 				break;
 				
-			case 'q':			// q0\n or q90\n
+            case 'q': {			// q0\n or q90\n
 				int i = 1;
 				int angle = 0;
 				while ( ( param != '\n' ) && ( param != '\r' ) ) {
@@ -111,8 +111,8 @@ void parseCommand() {
 				ultrasonic.ranger( angle );
 
 				break;
-
-			default:
+            }
+            default:
 				break;
 				
 		}

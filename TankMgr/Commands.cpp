@@ -26,7 +26,7 @@
 extern Ultrasonic ultrasonic;
 extern PinControl pinControl;
 
-bool testNewComm = true
+bool testNewComm = true;
 
 Commands::Commands() {
 	

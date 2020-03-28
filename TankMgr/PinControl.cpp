@@ -77,12 +77,12 @@ void PinControl::toggle() {
 }
 
 // Power management
-bool PinControl::mainPowerOff() {
+void PinControl::mainPowerOff() {
 	
 	digitalWrite( MainPowerPin, LOW );
 }
 
-bool PinControl::mainPowerOn() {
+void PinControl::mainPowerOn() {
 	
 	digitalWrite( MainPowerPin, HIGH );
 }
@@ -97,12 +97,12 @@ void PinControl::powerToggle() {
 	mainPowerState = !mainPowerState;
 }
 
-bool PinControl::piPowerOff() {
+void PinControl::piPowerOff() {
 	
 	digitalWrite( RPiPowerPin, LOW );
 }
 
-bool PinControl::piPowerOn() {
+void PinControl::piPowerOn() {
 	
 	digitalWrite( RPiPowerPin, HIGH );
 }

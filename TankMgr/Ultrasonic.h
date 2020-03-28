@@ -17,7 +17,7 @@ class Ultrasonic {
 private:
 	int				controlPin;			// Arduino pin connected with SIG pin of Ultrasonic
 	unsigned long	previousMillis;		// will store last time LED was updated
-	long			interval;			// blink interval (milliseconds)
+	unsigned long	interval;			// blink interval (milliseconds)
 	bool			isInitialized;
 	
 	

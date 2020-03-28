@@ -110,13 +110,13 @@ long Ultrasonic::pingSerialDisplay( int inAngle, bool print ) {
 		sprintf( angle, "%3d", inAngle );
 		sprintf( pulse, "%5l", result );
 		Serial.print( angle );
-		Serial.print("º: ");
+        Serial.print("º: ");
 		Serial.print( pulse );
 		Serial.print( " uS, " );
 		Serial.print( cm );	//0~400cm
-		Serial.print(" cm, " );	//0~300cm
-		Serial.print( mm );	//0~400mcm
-		Serial.print(" mm, " );	//0~300cm
+		Serial.print(" cm, " );
+		Serial.print( mm );	//0~4000mm
+		Serial.print(" mm, " );
 		Serial.print( in );	//0~120in
 		Serial.println(" inches");
 	}
