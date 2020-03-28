@@ -25,4 +25,4 @@
   http://embedXcode.weebly.com
 
 
-TankMgr.cpp is the main source file now
+TankMgr.cpp is the actual source now
