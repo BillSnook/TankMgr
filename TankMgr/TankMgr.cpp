@@ -41,7 +41,7 @@ void setup() {
 	Serial.begin(115200);
 	while(!Serial) {}                   // Wait for it to be ready
     while ( Serial.available() ) {      // Clear buffer
-        char inChar = (char)Serial.read();
+        Serial.read();
     }
 
 	inputString = "";

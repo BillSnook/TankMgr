@@ -108,7 +108,7 @@ long Ultrasonic::pingSerialDisplay( int inAngle, bool print ) {
 		char pulse[8];
 		
 		sprintf( angle, "%3d", inAngle );
-		sprintf( pulse, "%5l", result );
+		sprintf( pulse, "%5ld", result );
 		Serial.print( angle );
         Serial.print("º: ");
 		Serial.print( pulse );
