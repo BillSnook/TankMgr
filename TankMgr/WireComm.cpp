@@ -23,7 +23,7 @@
 #include "Commands.h"
 
 
-#define I2C_SLAVE_ADDRESS	8
+#define I2C_SLAVE_ADDRESS	0x60    // Needs to match value in cweb mtrctl app on Raspberry Pi
 
 
 extern	Commands		commands;
