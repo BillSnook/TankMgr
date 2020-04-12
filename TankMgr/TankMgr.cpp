@@ -114,10 +114,28 @@ void parseCommand() {
             }
             default:
 				break;
-				
 		}
-	} else {
-		Serial.println( "Error in parseCommand, unexpected inputString length" );
+        
+	} else {    // One character commands
+
+        char firstChar = inputString[0];
+        switch ( firstChar ) {
+            case 'l':
+                pinControl.isRunning = !pinControl.isRunning;
+                pinControl.interval = 1000;
+                Serial.println( "Toggle LED, 1 second intervals" );
+                return;
+                
+            case 'm':
+                pinControl.isRunning = !pinControl.isRunning;
+                pinControl.interval = 100;
+                Serial.println( "Toggle LED, 1/10 second intervals" );
+                return;
+            default:
+                Serial.println( "Error in parseCommand, unexpected inputString entry or length" );
+                break;
+        }
+
 	}
 
 }

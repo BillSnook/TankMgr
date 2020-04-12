@@ -23,9 +23,6 @@
 #include "Commands.h"
 
 
-#define I2C_SLAVE_ADDRESS	0x60    // Needs to match value in cweb mtrctl app on Raspberry Pi
-
-
 extern	Commands		commands;
 
 
@@ -72,13 +69,13 @@ void WireComm::receiveEvent( int howMany ) {
 
 	if ( howMany == 2 ) {			// Potential command
 		if ( Wire.available() == 2 ) {
-			byte command = Wire.read();
+			char command = Wire.read();
 			byte parameter = Wire.read();
             Serial.print( "command: " );
             Serial.print( command );
             Serial.print( ", parameter: " );
-            Serial.print( parameter );
-            Serial.println( "" );                // print the end of line
+            Serial.println( parameter );
+//            Serial.println( "" );                // print the end of line
 			commands.parseCommand( command, parameter );	// Handled here
 			return;
 		}

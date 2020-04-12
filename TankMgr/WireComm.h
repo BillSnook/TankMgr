@@ -19,6 +19,8 @@
 #ifndef WireComm_h
 #define WireComm_h
 
+#define I2C_SLAVE_ADDRESS    0x08    // Needs to match value in cweb mtrctl app on Raspberry Pi
+
 
 class WireComm {
 	

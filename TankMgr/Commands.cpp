@@ -37,9 +37,11 @@ Commands::Commands() {
 	last = 0;
 	next = 0;
 	range = 0;
-	vIn = analogRead( V_IN_PIN );
-	Serial.print("Commands initialization with vIn: ");
-	Serial.println( vIn );
+//	vIn = analogRead( V_IN_PIN );
+//	Serial.print("Commands initialization with vIn: ");
+//	Serial.println( vIn );
+    Serial.print("I2C slave address: ");
+    Serial.println( I2C_SLAVE_ADDRESS );
 }
 
 // REMOTE commands (writes from the Pi) are handled here
@@ -78,7 +80,7 @@ bool Commands::parseCommand( byte command, byte parameter ) {
 	return succeeds;
 }
 
-// REMOTE reads are handled here
+// REMOTE requests (reads from the Pi) are handled here
 // Called when data is requested by a master when it wants to read data
 bool Commands::handleRequest() {
 	switch ( mode ) {
@@ -92,20 +94,35 @@ bool Commands::handleRequest() {
 
         case statusMode:
 		case scanMode:
-			vIn = analogRead( V_IN_PIN );
+//			vIn = analogRead( V_IN_PIN );
             if ( testNewComm ) {
-                Wire.write( 4 );    // Count
+                Wire.write( 0x17 );    // Count
                 Wire.write( (uint8_t)0xAA );
                 Wire.write( (uint8_t)0x55 );
                 Wire.write( (uint8_t)0xCC );
                 Wire.write( (uint8_t)0xFF );
+//                uint8_t block[8];
+//                uint8_t *blk = block[0];
+//                block[0] = (uint8_t)0x04;
+//                block[1] = (uint8_t)0xAA;
+//                block[2] = (uint8_t)0x55;
+//                block[3] = (uint8_t)0xCC;
+//                block[4] = (uint8_t)0xFF;
+//                Wire.write(blk, 4);
             } else {
-                Wire.write( (uint8_t)((vIn >> 8) & 0xFF) );
-                Wire.write( (uint8_t)(vIn & 0xFF) );
-                Wire.write( (uint8_t)((stateBits >> 8) & 0xFF) );
-                Wire.write( (uint8_t)(stateBits & 0xFF) );
+                Wire.write( (uint8_t)0x05 );
+                Wire.write( (uint8_t)0x55 );
+                Wire.write( (uint8_t)0xCC );
+                Wire.write( (uint8_t)0xFF );
+                Wire.write( (uint8_t)0x88 );
+                Wire.write( (uint8_t)0x77 );
+//                Wire.write( (uint8_t)((vIn >> 8) & 0xFF) );
+//                Wire.write( (uint8_t)(vIn & 0xFF) );
+//                Wire.write( (uint8_t)((stateBits >> 8) & 0xFF) );
+//                Wire.write( (uint8_t)(stateBits & 0xFF) );
             }
-			mode = statusMode;
+			mode = statusMode;  // iff scanmode
+//            Serial.println("Returned status");
 			break;
 			
 		case rangeMode:
