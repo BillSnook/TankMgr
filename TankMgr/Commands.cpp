@@ -85,9 +85,6 @@ bool Commands::parseCommand( byte command, byte parameter ) {
 bool Commands::handleRequest() {
 	switch ( mode ) {
 		case initialMode:
-            if ( testNewComm ) {
-                Wire.write( 2 );    // Count
-            }
 			Wire.write( (uint8_t)0xAA );
 			Wire.write( (uint8_t)0x55 );
 			break;
@@ -96,30 +93,15 @@ bool Commands::handleRequest() {
 		case scanMode:
 //			vIn = analogRead( V_IN_PIN );
             if ( testNewComm ) {
-                Wire.write( 0x17 );    // Count
                 Wire.write( (uint8_t)0xAA );
                 Wire.write( (uint8_t)0x55 );
                 Wire.write( (uint8_t)0xCC );
-                Wire.write( (uint8_t)0xFF );
-//                uint8_t block[8];
-//                uint8_t *blk = block[0];
-//                block[0] = (uint8_t)0x04;
-//                block[1] = (uint8_t)0xAA;
-//                block[2] = (uint8_t)0x55;
-//                block[3] = (uint8_t)0xCC;
-//                block[4] = (uint8_t)0xFF;
-//                Wire.write(blk, 4);
+                Wire.write( (uint8_t)0x33 );
             } else {
-                Wire.write( (uint8_t)0x05 );
-                Wire.write( (uint8_t)0x55 );
-                Wire.write( (uint8_t)0xCC );
-                Wire.write( (uint8_t)0xFF );
-                Wire.write( (uint8_t)0x88 );
-                Wire.write( (uint8_t)0x77 );
-//                Wire.write( (uint8_t)((vIn >> 8) & 0xFF) );
-//                Wire.write( (uint8_t)(vIn & 0xFF) );
-//                Wire.write( (uint8_t)((stateBits >> 8) & 0xFF) );
-//                Wire.write( (uint8_t)(stateBits & 0xFF) );
+                Wire.write( (uint8_t)((vIn >> 8) & 0xFF) );
+                Wire.write( (uint8_t)(vIn & 0xFF) );
+                Wire.write( (uint8_t)((stateBits >> 8) & 0xFF) );
+                Wire.write( (uint8_t)(stateBits & 0xFF) );
             }
 			mode = statusMode;  // iff scanmode
 //            Serial.println("Returned status");
@@ -129,11 +111,10 @@ bool Commands::handleRequest() {
 			last = ultrasonic.last;
 			range = ultrasonic.range;
             if ( testNewComm ) {
-                Wire.write( 4 );    // Count
                 Wire.write( (uint8_t)0x84 );
                 Wire.write( (uint8_t)0x21 );
                 Wire.write( (uint8_t)0xF0 );
-                Wire.write( (uint8_t)0xFF );
+                Wire.write( (uint8_t)0x0F );
             } else {
                 Wire.write( (uint8_t)((last >> 8) & 0xFF) );
                 Wire.write( (uint8_t)(last & 0xFF) );
