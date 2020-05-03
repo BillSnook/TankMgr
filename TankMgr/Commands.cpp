@@ -26,7 +26,7 @@
 extern Ultrasonic ultrasonic;
 extern PinControl pinControl;
 
-bool testNewComm = true;
+bool testNewComm = false;
 
 Commands::Commands() {
 	
@@ -46,12 +46,12 @@ Commands::Commands() {
 
 // REMOTE commands (writes from the Pi) are handled here
 // Called if it seems to be a command and returns true if command succeeds
-bool Commands::parseCommand( byte command, byte parameter ) {
+bool Commands::parseI2CCommand( byte command, byte parameter ) {
 	int succeeds = false;
     int angleMs;
 	switch ( command ) {		// Modes determine how read data is structured
         case 'p': {				// Ping - parameter is the angle
-            Serial.println("parseCommand p");
+            Serial.println("parseI2CCommand p");
 			mode = rangeMode;
 			angleMs = abs( parameter - next );	// Change of angle
 			next = parameter;	// When next range is measured, this becomes an index
@@ -63,12 +63,12 @@ bool Commands::parseCommand( byte command, byte parameter ) {
             break;
         }
         case 's':   			// Status
-            Serial.println("parseCommand s");
+            Serial.println("parseI2CCommand s");
 			mode = statusMode;
 			succeeds = true;
             break;
         case 'v': 				// Power relay enable
-            Serial.println("parseCommand v");
+            Serial.println("parseI2CCommand v");
 			if ( 0 == parameter ) {
 				pinControl.mainPowerOff();
 			} else {
@@ -82,7 +82,7 @@ bool Commands::parseCommand( byte command, byte parameter ) {
 
 // REMOTE requests (reads from the Pi) are handled here
 // Called when data is requested by a master when it wants to read data
-bool Commands::handleRequest() {
+bool Commands::handleI2CRequest() {
 	switch ( mode ) {
 		case initialMode:
 			Wire.write( (uint8_t)0xAA );

@@ -57,10 +57,10 @@ void WireComm::resetForWireComm() {
 void WireComm::requestEvent() {
 	
 //	// Check mode then respond with appropriate data
-	commands.handleRequest();
+	commands.handleI2CRequest();
 }
 
-// REMOTE data reception is handled here
+// REMOTE I2C data reception is handled here
 // function that executes whenever data is received from I2C master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
@@ -76,7 +76,7 @@ void WireComm::receiveEvent( int howMany ) {
             Serial.print( ", parameter: " );
             Serial.println( parameter );
 //            Serial.println( "" );                // print the end of line
-			commands.parseCommand( command, parameter );	// Handled here
+			commands.parseI2CCommand( command, parameter );	// Handled here
 			return;
 		}
 	}

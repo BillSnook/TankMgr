@@ -57,7 +57,7 @@ void setup() {
 	ultrasonic = Ultrasonic();
 	ultrasonic.setupForUltrasonic();
 
-	// Wrapper for Wire class which writes to I2C
+	// Wrapper for Wire class which communicates on I2C
 	wireComm = WireComm();
 	wireComm.setupForWireComm( false );	// true for master, false for slave
 	
@@ -67,13 +67,12 @@ void setup() {
 	
 	stringComplete = false;
 
-	Serial.println( "Setup complete - ok" );
+	Serial.println( "Setup complete" );
 }
 
 
-void parseCommand() {
-	// Execute commands with parameters here
-//	Serial.print( "In parseCommand with inputString length: " );
+void parseDbgCommand() {       // Execute Debug commands
+//	Serial.print( "In parseDbgCommand with inputString length: " );
 //	Serial.println( inputString.length() );
 	if ( inputString.length() > 1 ) {	// Ensure more than just eol and maybe one character
 		char firstChar = inputString[0];
@@ -132,7 +131,7 @@ void parseCommand() {
                 Serial.println( "Toggle LED, 1/10 second intervals" );
                 return;
             default:
-                Serial.println( "Error in parseCommand, unexpected inputString entry or length" );
+                Serial.println( "Error in parseDbgCommand, unexpected inputString entry or length" );
                 break;
         }
 
@@ -148,7 +147,7 @@ void loop() {
 //		inputString = "New: " + inputString;
 //		Serial.println( inputString );
 		
-		parseCommand();
+		parseDbgCommand();
 		// Done processing local command, clear the string:
 		inputString = "";
 		stringComplete = false;
@@ -164,6 +163,7 @@ void loop() {
 // SerialEvent occurs whenever new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
 // delay response, as can delays here. Multiple bytes of data may be available.
+// This is the serial connection from a debug terminal on the controlling computer.
 void serialEvent() {
 	while ( Serial.available() ) {			// DEBUG commands are here
 		char inChar = (char)Serial.read();

@@ -48,8 +48,8 @@ public:
 	int					next;
 	int					range;
 
-	bool 				parseCommand( byte command, byte parameter );
-	bool 				handleRequest();
+	bool 				parseI2CCommand( byte command, byte parameter );
+	bool 				handleI2CRequest();
 };
 
 #endif // Commands_h
