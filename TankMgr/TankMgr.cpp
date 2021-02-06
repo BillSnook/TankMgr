@@ -107,7 +107,7 @@ void parseDbgCommand() {       // Execute Debug commands
 				Serial.println( " degrees" );
 				pinControl.setAngle( angle );
 				delay( 200 );	// Wait for angle to be reached
-				ultrasonic.ranger( angle );
+//				ultrasonic.ranger( angle );
 
 				break;
             }
@@ -215,7 +215,7 @@ void serialEvent() {
 					return;
 					
 				case 'p':
-					ultrasonic.pingSerialDisplay( 0, true );
+//					ultrasonic.pingSerialDisplay( 0, true );
 					Serial.println( "Ping and print results" );
 					return;
 					

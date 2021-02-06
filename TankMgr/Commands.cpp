@@ -21,9 +21,7 @@
 #include "PinControl.h"
 #include "Commands.h"
 #include "WireComm.h"
-#include "Ultrasonic.h"
 
-extern Ultrasonic ultrasonic;
 extern PinControl pinControl;
 
 bool testNewComm = false;
@@ -58,7 +56,6 @@ bool Commands::parseI2CCommand( byte command, byte parameter ) {
 			pinControl.setAngle( parameter );
 			angleMs *= 20;		// 20 ms x angle_to_be_moved
 			delay( angleMs );	// Wait for angle to be reached
-			ultrasonic.ranger( parameter );
 			succeeds = true;
             break;
         }
@@ -108,8 +105,6 @@ bool Commands::handleI2CRequest() {
 			break;
 			
 		case rangeMode:
-			last = ultrasonic.last;
-			range = ultrasonic.range;
             if ( testNewComm ) {
                 Wire.write( (uint8_t)0x84 );
                 Wire.write( (uint8_t)0x21 );

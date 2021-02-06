@@ -10,7 +10,7 @@
 		A92F205A21DFCBD100DF77E3 /* TankMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */; };
 		A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207021DFCD7800DF77E3 /* PinControl.h */; };
 		A981572F21EBC846003B360C /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A981572E21EBC846003B360C /* Commands.cpp */; };
-		A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* main.cpp */; };
+		A9AF200321DFCBD000DF77E3 /* TankMgr.ino in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* TankMgr.ino */; };
 		A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */; };
 		A9AF207421DFD1F400DF77E3 /* Ultrasonic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */; };
 		A9AF207D21E1395900DF77E3 /* WireComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207B21E1395800DF77E3 /* WireComm.cpp */; };
@@ -430,7 +430,7 @@
 		A981572D21EBC845003B360C /* Commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
 		A981572E21EBC846003B360C /* Commands.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Commands.cpp; sourceTree = "<group>"; };
 		A9AF1FFF21DFCBD000DF77E3 /* Index */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Index; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9AF200221DFCBD000DF77E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A9AF200221DFCBD000DF77E3 /* TankMgr.ino */ = {isa = PBXFileReference; lastKnownFileType = text; path = TankMgr.ino; sourceTree = "<group>"; };
 		A9AF200421DFCBD000DF77E3 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		A9AF200621DFCBD000DF77E3 /* ReadMe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		A9AF200821DFCBD000DF77E3 /* Sketchbook.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = Sketchbook.txt; path = Sketchbook/Sketchbook.txt; sourceTree = "<group>"; };
@@ -927,7 +927,7 @@
 		A9AF200121DFCBD000DF77E3 /* TankMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A9AF200221DFCBD000DF77E3 /* main.cpp */,
+				A9AF200221DFCBD000DF77E3 /* TankMgr.ino */,
 				A9AF200421DFCBD000DF77E3 /* Makefile */,
 				A9AF200621DFCBD000DF77E3 /* ReadMe.txt */,
 				A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */,
@@ -2282,7 +2282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */,
-				A9AF200321DFCBD000DF77E3 /* main.cpp in Sources */,
+				A9AF200321DFCBD000DF77E3 /* TankMgr.ino in Sources */,
 				A92F205A21DFCBD100DF77E3 /* TankMgr.cpp in Sources */,
 				A92F207021DFCD7800DF77E3 /* PinControl.h in Sources */,
 				AA2A190104093110AA000005 /* Arduino.h in Sources */,

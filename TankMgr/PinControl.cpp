@@ -41,7 +41,6 @@ bool PinControl::setupPins() {
 	digitalWrite( RPiPowerPin, LOW );
 	pinMode( LidarDonePin, INPUT );
 
-
 	scanner.attach( ScannerPin );
 	setAngle( 90 );
 
