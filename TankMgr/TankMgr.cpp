@@ -80,7 +80,9 @@ void loop() {
 
 
 void parseDbgCommand() {       // Execute test commands from serial port
-//	Serial.print( "In parseDbgCommand with inputString length: " );
+//    Serial.print( "In parseDbgCommand with inputString < " );
+//    Serial.print( inputString );
+//    Serial.print( " >, length: " );
 //	Serial.println( inputString.length() );
 	if ( inputString.length() > 1 ) {	// Ensure more than just eol and maybe one character
 		char firstChar = inputString[0];
@@ -137,6 +139,7 @@ void parseDbgCommand() {       // Execute test commands from serial port
                 pinControl.interval = 100;
                 Serial.println( "Toggle LED, 1/10 second intervals" );
                 return;
+                
             default:
                 Serial.println( "Error in parseDbgCommand, unexpected inputString entry or length" );
                 break;
@@ -146,6 +149,9 @@ void parseDbgCommand() {       // Execute test commands from serial port
 
 }
 
+// NOTE: - Serial monitor in the Arduino IDE sends a newline with each Send button click.
+// We need to manage that here. We are currently trying to use a single letter as
+// a 'quick' command but we need to fix that.
 
 // SerialEvent occurs whenever new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
