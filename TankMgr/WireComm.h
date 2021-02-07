@@ -1,10 +1,7 @@
 ///
 /// @file		WireComm.h
 /// @brief		Library header
-/// @details	<#details#>
-/// @n
 /// @n @b		Project TankMgr
-/// @n @a		Developed with [embedXcode](http://embedXcode.weebly.com)
 ///
 /// @author		William Snook
 /// @author		billsnook

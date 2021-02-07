@@ -1,11 +1,6 @@
 //
 // WireComm.cpp
 // Library C++ code
-// ----------------------------------
-// Developed with embedXcode
-// http://embedXcode.weebly.com
-//
-// Project 		scanner
 //
 // Created by 	William Snook, 7/22/18 5:02 PM
 // 				billsnook
@@ -37,9 +32,11 @@ void WireComm::setupForWireComm( bool beMaster ) {
 		Serial.println( "WireComm is already setup." );
 		return;
 	}
-	isSetup = true;									// only done once
-//	Serial.print("SetupForWireComm as I2C slave at address ");		// print debug info
-//	Serial.println( I2C_SLAVE_ADDRESS );		// print debug info
+	isSetup = true;							    // only done once
+
+//    Serial.print("I2C slave address set: ");        // Debug
+//    Serial.println( I2C_SLAVE_ADDRESS );
+    
 	Wire.begin( I2C_SLAVE_ADDRESS );			// join i2c bus as slave with address #8
 	Wire.onReceive(receiveEvent);				// register receive event for writes from master
 	Wire.onRequest(requestEvent);				// register request event for read to master
@@ -52,7 +49,8 @@ void WireComm::resetForWireComm() {
 
 // MARK: These I2C slave callback routines handle writes and reads from the I2C master
 
-// function that executes whenever data is requested by an I2C master when it reads data
+// REMOTE I2C data requests from master are handled here
+// function that executes whenever data is requested by an I2C master when it reads
 // this function is registered as an event, see setup()
 void WireComm::requestEvent() {
 	
@@ -60,7 +58,7 @@ void WireComm::requestEvent() {
 	commands.handleI2CRequest();
 }
 
-// REMOTE I2C data reception is handled here
+// REMOTE I2C data commands from master are handled here
 // function that executes whenever data is received from I2C master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
@@ -80,11 +78,12 @@ void WireComm::receiveEvent( int howMany ) {
 			return;
 		}
 	}
-    Serial.print( howMany );                // print the end of line
-    Serial.print( ": < " );                // print the end of line
+    // Unexpected command format
+    Serial.print( howMany );        // print the end of line
+    Serial.print( ": < " );         // print the end of line
 	while (0 < Wire.available()) {	// loop through all
 		char c = Wire.read();		// receive bytes as a character
 		Serial.print(c);			// print the character
 	}
-	Serial.println( " >" );				// print the end of line
+	Serial.println( " >" );		    // print the end of line
 }

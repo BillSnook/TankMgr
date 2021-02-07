@@ -39,13 +39,14 @@ bool PinControl::setupPins() {
 	digitalWrite( MainPowerPin, LOW );
 	pinMode( RPiPowerPin, OUTPUT );
 	digitalWrite( RPiPowerPin, LOW );
-	pinMode( LidarDonePin, INPUT );
-
-	scanner.attach( ScannerPin );
-	setAngle( 90 );
+//	pinMode( LidarDonePin, INPUT );
+//
+//	scanner.attach( ScannerPin );
+//	setAngle( 90 );
 
 	isInitialized = true;
-	isRunning = true;
+	isRunning = false;      // No blinking at startup
+    
 	return true;
 }
 
@@ -104,10 +105,4 @@ void PinControl::piPowerOff() {
 void PinControl::piPowerOn() {
 	
 	digitalWrite( RPiPowerPin, HIGH );
-}
-
-void PinControl::setAngle( int angle ) {
-	
-	int offset = 0;
-	scanner.write( angle + offset );
 }

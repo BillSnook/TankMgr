@@ -43,8 +43,6 @@ public:
 	
 	void 	piPowerOff();
 	void 	piPowerOn();
-	
-	void	setAngle( int angle );
 
 };
 

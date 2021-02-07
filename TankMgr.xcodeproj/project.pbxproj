@@ -12,7 +12,6 @@
 		A981572F21EBC846003B360C /* Commands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A981572E21EBC846003B360C /* Commands.cpp */; };
 		A9AF200321DFCBD000DF77E3 /* TankMgr.ino in Sources */ = {isa = PBXBuildFile; fileRef = A9AF200221DFCBD000DF77E3 /* TankMgr.ino */; };
 		A9AF207121DFCD7800DF77E3 /* PinControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */; };
-		A9AF207421DFD1F400DF77E3 /* Ultrasonic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */; };
 		A9AF207D21E1395900DF77E3 /* WireComm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9AF207B21E1395800DF77E3 /* WireComm.cpp */; };
 		A9C4AF982221C6C300BA654A /* Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A9C4AF962221C6C300BA654A /* Monitor.cpp */; };
 		AA2A190104093110AA000005 /* Arduino.h in Sources */ = {isa = PBXBuildFile; fileRef = AAAA190104093110AA000005 /* Arduino.h */; };
@@ -427,6 +426,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BCB736B25D048D500F70630 /* TankMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TankMgr.h; sourceTree = "<group>"; };
 		A981572D21EBC845003B360C /* Commands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
 		A981572E21EBC846003B360C /* Commands.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Commands.cpp; sourceTree = "<group>"; };
 		A9AF1FFF21DFCBD000DF77E3 /* Index */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Index; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -489,8 +489,6 @@
 		A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = TankMgr.cpp; sourceTree = "<group>"; };
 		A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PinControl.cpp; sourceTree = "<group>"; };
 		A9AF207021DFCD7800DF77E3 /* PinControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinControl.h; sourceTree = "<group>"; };
-		A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ultrasonic.h; sourceTree = "<group>"; };
-		A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ultrasonic.cpp; sourceTree = "<group>"; };
 		A9AF207B21E1395800DF77E3 /* WireComm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WireComm.cpp; sourceTree = "<group>"; };
 		A9AF207C21E1395900DF77E3 /* WireComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireComm.h; sourceTree = "<group>"; };
 		A9C4AF962221C6C300BA654A /* Monitor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Monitor.cpp; sourceTree = "<group>"; };
@@ -930,12 +928,11 @@
 				A9AF200221DFCBD000DF77E3 /* TankMgr.ino */,
 				A9AF200421DFCBD000DF77E3 /* Makefile */,
 				A9AF200621DFCBD000DF77E3 /* ReadMe.txt */,
+				6BCB736B25D048D500F70630 /* TankMgr.h */,
 				A9AF205A21DFCBD100DF77E3 /* TankMgr.cpp */,
 				A9F40C3321FCCAA5007B9EE0 /* Pins.h */,
 				A9AF207021DFCD7800DF77E3 /* PinControl.h */,
 				A9AF206F21DFCD7800DF77E3 /* PinControl.cpp */,
-				A9AF207221DFD1F400DF77E3 /* Ultrasonic.h */,
-				A9AF207321DFD1F400DF77E3 /* Ultrasonic.cpp */,
 				A9AF207C21E1395900DF77E3 /* WireComm.h */,
 				A9AF207B21E1395800DF77E3 /* WireComm.cpp */,
 				A981572D21EBC845003B360C /* Commands.h */,
@@ -2675,7 +2672,6 @@
 				AA2A190104093110AA0001CA /* TembooTimer.h in Sources */,
 				AA2A190104093110AA0001CB /* TembooWebSocketRequestHandles.c in Sources */,
 				AA2A190104093110AA0001CC /* TembooWebSocketRequestHandles.h in Sources */,
-				A9AF207421DFD1F400DF77E3 /* Ultrasonic.cpp in Sources */,
 				AA2A190104093110AA0001CD /* tmbhmac.cpp in Sources */,
 				AA2A190104093110AA0001CE /* tmbhmac.h in Sources */,
 				AA2A190104093110AA0001CF /* tmbmd5.cpp in Sources */,

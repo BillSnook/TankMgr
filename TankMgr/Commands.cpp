@@ -38,8 +38,9 @@ Commands::Commands() {
 //	vIn = analogRead( V_IN_PIN );
 //	Serial.print("Commands initialization with vIn: ");
 //	Serial.println( vIn );
-    Serial.print("I2C slave address: ");
-    Serial.println( I2C_SLAVE_ADDRESS );
+
+//    Serial.print("I2C slave address: ");
+//    Serial.println( I2C_SLAVE_ADDRESS );
 }
 
 // REMOTE commands (writes from the Pi) are handled here
@@ -47,13 +48,13 @@ Commands::Commands() {
 bool Commands::parseI2CCommand( byte command, byte parameter ) {
 	int succeeds = false;
     int angleMs;
-	switch ( command ) {		// Modes determine how read data is structured
+	switch ( command ) {
         case 'p': {				// Ping - parameter is the angle
             Serial.println("parseI2CCommand p");
 			mode = rangeMode;
 			angleMs = abs( parameter - next );	// Change of angle
 			next = parameter;	// When next range is measured, this becomes an index
-			pinControl.setAngle( parameter );
+//			pinControl.setAngle( parameter );
 			angleMs *= 20;		// 20 ms x angle_to_be_moved
 			delay( angleMs );	// Wait for angle to be reached
 			succeeds = true;

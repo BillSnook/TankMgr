@@ -18,27 +18,28 @@
 
 #include <Arduino.h>
 
+#include "TankMgr.h"
 #include "PinControl.h"
-#include "Ultrasonic.h"
 #include "WireComm.h"
 #include "Commands.h"
 #include "Monitor.h"
 
 
 PinControl		pinControl;
-Ultrasonic		ultrasonic;
-WireComm		wireComm;			// I2C functions and test commands
 Commands		commands;
+WireComm        wireComm;           // I2C functions and test commands
 Monitor			monitor;
 
 String			inputString;		// a String to hold incoming data
-boolean			stringComplete;		// whether the string is complete
+boolean			stringComplete;		// whether the string is ready to be read
 
 
 // Main setup routine
 void setup() {
 
 	Serial.begin(115200);
+    
+    stringComplete = false;
 	while(!Serial) {}                   // Wait for it to be ready
     while ( Serial.available() ) {      // Clear buffer
         Serial.read();
@@ -46,32 +47,39 @@ void setup() {
 
 	inputString = "";
 	inputString.reserve(200);	// reserve 200 bytes for the inputString
-//	Serial.println( "" );
 
-	// set the digital pin as output:
-	pinControl = PinControl();
+	// Setup the digital pins as input or output and set defaults as needed
 	pinControl.setupPins();
 
-	pinControl.mainPowerOff();	// Set power off to motors and servos at startup
-
-	ultrasonic = Ultrasonic();
-	ultrasonic.setupForUltrasonic();
-
-	// Wrapper for Wire class which communicates on I2C
-	wireComm = WireComm();
+	// Wrapper for Wire class which communicates on I2C to Pi
 	wireComm.setupForWireComm( false );	// true for master, false for slave
 	
-	monitor = Monitor();
-
-	commands = Commands();
-	
-	stringComplete = false;
-
-	Serial.println( "Setup complete" );
+	Serial.println( "Setup complete 5" );
 }
 
 
-void parseDbgCommand() {       // Execute Debug commands
+// Main run loop
+void loop() {
+    
+    //    Serial.print( "+" );
+    if ( stringComplete ) {    // Check for and respond to serial commands
+//        inputString = "New: " + inputString;
+//        Serial.println( inputString );
+        
+        parseDbgCommand();  // Parse inputString and execute commands
+        // Done processing local command, clear the string:
+        inputString = "";
+        stringComplete = false;
+    }
+    
+    pinControl.toggle();            // Check if it is time to toggle LEDs
+    
+//    monitor.statusCheck();    // Take regular measurements and check important system states
+}
+
+
+
+void parseDbgCommand() {       // Execute test commands from serial port
 //	Serial.print( "In parseDbgCommand with inputString length: " );
 //	Serial.println( inputString.length() );
 	if ( inputString.length() > 1 ) {	// Ensure more than just eol and maybe one character
@@ -90,7 +98,7 @@ void parseDbgCommand() {       // Execute Debug commands
 				Serial.print( "Set scanner to " );
 				Serial.print( angle );
 				Serial.println( " degrees" );
-				pinControl.setAngle( angle );
+//				pinControl.setAngle( angle );
 				}
 				break;
 				
@@ -105,9 +113,8 @@ void parseDbgCommand() {       // Execute Debug commands
 				Serial.print( "Set scanner to " );
 				Serial.print( angle );
 				Serial.println( " degrees" );
-				pinControl.setAngle( angle );
+//				pinControl.setAngle( angle );
 				delay( 200 );	// Wait for angle to be reached
-//				ultrasonic.ranger( angle );
 
 				break;
             }
@@ -139,31 +146,12 @@ void parseDbgCommand() {       // Execute Debug commands
 
 }
 
-// Main run loop
-void loop() {
-	
-	//	Serial.print( "+" );
-	if ( stringComplete ) {	// Check for and respond to serial commands
-//		inputString = "New: " + inputString;
-//		Serial.println( inputString );
-		
-		parseDbgCommand();
-		// Done processing local command, clear the string:
-		inputString = "";
-		stringComplete = false;
-	}
-	
-	pinControl.toggle();			// Check if it is time to toggle LEDs
-	
-//	monitor.statusCheck();	// Take regular measurements and check important system states
-}
-
-
 
 // SerialEvent occurs whenever new data comes in the hardware serial RX. This
 // routine is run between each time loop() runs, so using delay inside loop can
 // delay response, as can delays here. Multiple bytes of data may be available.
-// This is the serial connection from a debug terminal on the controlling computer.
+// This is the USB power/serial connection from a terminal on a development computer.
+// Not used when running autonomously; i2c from companion will send controls.
 void serialEvent() {
 	while ( Serial.available() ) {			// DEBUG commands are here
 		char inChar = (char)Serial.read();
@@ -193,13 +181,10 @@ void serialEvent() {
 					return;
 					
 				case 'a':				// Scanner
-					pinControl.setAngle( 0 );
 					return;
 				case 'b':				// Scanner
-					pinControl.setAngle( 90 );
 					return;
 				case 'c':				// Scanner
-					pinControl.setAngle( 180 );
 					return;
 					
 				case 'l':
@@ -215,7 +200,6 @@ void serialEvent() {
 					return;
 					
 				case 'p':
-//					ultrasonic.pingSerialDisplay( 0, true );
 					Serial.println( "Ping and print results" );
 					return;
 					
