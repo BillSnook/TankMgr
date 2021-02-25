@@ -18,6 +18,7 @@
 
 
 // Library header
+#include "TankMgr.h"
 #include "PinControl.h"
 #include "Commands.h"
 #include "WireComm.h"
@@ -36,11 +37,13 @@ Commands::Commands() {
 	next = 0;
 	range = 0;
 //	vIn = analogRead( V_IN_PIN );
+//#ifdef SERIAL_COMMANDS
 //	Serial.print("Commands initialization with vIn: ");
 //	Serial.println( vIn );
 
 //    Serial.print("I2C slave address: ");
 //    Serial.println( I2C_SLAVE_ADDRESS );
+//#endif  // SERIAL_COMMANDS
 }
 
 // REMOTE commands (writes from the Pi) are handled here
@@ -50,7 +53,9 @@ bool Commands::parseI2CCommand( byte command, byte parameter ) {
     int angleMs;
 	switch ( command ) {
         case 'p': {				// Ping - parameter is the angle
+#ifdef SERIAL_COMMANDS
             Serial.println("parseI2CCommand p");
+#endif  // SERIAL_COMMANDS
 			mode = rangeMode;
 			angleMs = abs( parameter - next );	// Change of angle
 			next = parameter;	// When next range is measured, this becomes an index
@@ -61,12 +66,16 @@ bool Commands::parseI2CCommand( byte command, byte parameter ) {
             break;
         }
         case 's':   			// Status
+#ifdef SERIAL_COMMANDS
             Serial.println("parseI2CCommand s");
+#endif  // SERIAL_COMMANDS
 			mode = statusMode;
 			succeeds = true;
             break;
         case 'v': 				// Power relay enable
+#ifdef SERIAL_COMMANDS
             Serial.println("parseI2CCommand v");
+#endif  // SERIAL_COMMANDS
 			if ( 0 == parameter ) {
 				pinControl.mainPowerOff();
 			} else {

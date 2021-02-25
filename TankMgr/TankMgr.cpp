@@ -37,6 +37,7 @@ boolean			stringComplete;		// whether the string is ready to be read
 // Main setup routine
 void setup() {
 
+#ifdef SERIAL_COMMANDS
 	Serial.begin(115200);
     
     stringComplete = false;
@@ -47,20 +48,24 @@ void setup() {
 
 	inputString = "";
 	inputString.reserve(200);	// reserve 200 bytes for the inputString
-
+#endif  // SERIAL_COMMANDS
+    
 	// Setup the digital pins as input or output and set defaults as needed
 	pinControl.setupPins();
 
 	// Wrapper for Wire class which communicates on I2C to Pi
 	wireComm.setupForWireComm( false );	// true for master, false for slave
 	
+#ifdef SERIAL_COMMANDS
 	Serial.println( "Setup complete 5" );
+#endif  // SERIAL_COMMANDS
 }
 
 
 // Main run loop
 void loop() {
     
+#ifdef SERIAL_COMMANDS
     //    Serial.print( "+" );
     if ( stringComplete ) {    // Check for and respond to serial commands
 //        inputString = "New: " + inputString;
@@ -71,7 +76,8 @@ void loop() {
         inputString = "";
         stringComplete = false;
     }
-    
+#endif  // SERIAL_COMMANDS
+
     pinControl.toggle();            // Check if it is time to toggle LEDs
     
 //    monitor.statusCheck();    // Take regular measurements and check important system states
@@ -79,6 +85,7 @@ void loop() {
 
 
 
+#ifdef SERIAL_COMMANDS
 void parseDbgCommand() {       // Execute test commands from serial port
 //    Serial.print( "In parseDbgCommand with inputString < " );
 //    Serial.print( inputString );
@@ -226,3 +233,4 @@ void serialEvent() {
 		}
 	}
 }
+#endif  // SERIAL_COMMANDS

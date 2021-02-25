@@ -14,6 +14,7 @@
 
 // Library header
 #include "Arduino.h"
+#include "TankMgr.h"
 #include "WireComm.h"
 #include "Commands.h"
 
@@ -29,14 +30,18 @@ WireComm::WireComm() {
 void WireComm::setupForWireComm( bool beMaster ) {
 	
 	if ( isSetup ) {
+#ifdef SERIAL_COMMANDS
 		Serial.println( "WireComm is already setup." );
+#endif  // SERIAL_COMMANDS
 		return;
 	}
 	isSetup = true;							    // only done once
 
+//#ifdef SERIAL_COMMANDS
 //    Serial.print("I2C slave address set: ");        // Debug
 //    Serial.println( I2C_SLAVE_ADDRESS );
-    
+//#endif  // SERIAL_COMMANDS
+
 	Wire.begin( I2C_SLAVE_ADDRESS );			// join i2c bus as slave with address #8
 	Wire.onReceive(receiveEvent);				// register receive event for writes from master
 	Wire.onRequest(requestEvent);				// register request event for read to master
@@ -62,23 +67,28 @@ void WireComm::requestEvent() {
 // function that executes whenever data is received from I2C master when it writes
 // this function is registered as an event, see setup()
 void WireComm::receiveEvent( int howMany ) {
+//#ifdef SERIAL_COMMANDS
 //	Serial.print("Got receiveEvent to accept write, howMany: ");
 //	Serial.println(howMany);
+//#endif  // SERIAL_COMMANDS
 
 	if ( howMany == 2 ) {			// Potential command
 		if ( Wire.available() == 2 ) {
 			char command = Wire.read();
 			byte parameter = Wire.read();
+#ifdef SERIAL_COMMANDS
             Serial.print( "command: " );
             Serial.print( command );
             Serial.print( ", parameter: " );
             Serial.println( parameter );
 //            Serial.println( "" );                // print the end of line
+#endif  // SERIAL_COMMANDS
 			commands.parseI2CCommand( command, parameter );	// Handled here
 			return;
 		}
 	}
     // Unexpected command format
+#ifdef SERIAL_COMMANDS
     Serial.print( howMany );        // print the end of line
     Serial.print( ": < " );         // print the end of line
 	while (0 < Wire.available()) {	// loop through all
@@ -86,4 +96,5 @@ void WireComm::receiveEvent( int howMany ) {
 		Serial.print(c);			// print the character
 	}
 	Serial.println( " >" );		    // print the end of line
+#endif  // SERIAL_COMMANDS
 }

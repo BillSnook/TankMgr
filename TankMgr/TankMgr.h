@@ -10,7 +10,10 @@
 #define TankMgr_h
 
 
-void parseDbgCommand();       // Execute test commands from serial port
+#define SERIAL_COMMANDS         // Enable code to talk to serial port
+
+
+void parseDbgCommand();         // Execute test commands from serial port
 
 
 #endif /* TankMgr_h */
